@@ -8,6 +8,6 @@ git push
 
 ///
 
-cara update data folder di pc.
+cara update data folder di github.
 
 git pull
