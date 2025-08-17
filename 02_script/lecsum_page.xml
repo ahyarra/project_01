@@ -1,0 +1,620 @@
+<b:if cond="data:blog.pageId == &quot;7156039235398405476&quot;">
+<style type="text/css">
+header {
+    padding-bottom: 0px!important;
+}
+main .main_content {
+    width: 100% !important;
+    margin-top: 0!important;
+	margin-bottom: 0px!important;
+}
+.uk-margin-large-bottom {
+    margin-bottom: 0px!important;
+}
+.uk-container {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+}
+
+.single_post .post_title {
+    display:none;
+}
+.post_header_line {display:none}
+
+.footerhome1 {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    padding: 100px 10px 80px 0px;
+	margin: 0 auto;
+	overflow: hidden;
+	color:#fff;
+}
+.footerhome1:before {
+    position: absolute;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4m3EVMtTYSPBZpCfl9ScV92hgqXQHprlv_5LDBe-G5pEMakDf98Qg-d2lVMtIqHakxtyfLHnlkBSTn2JLGS6AjJnZxtS8OLWiqMKLAC73thCSUph9RES8QRqZxYfGySaQsSoLgRuaV2k/s16000/ezgif-2-9868dcb9168e.gif);
+    color: #f1f1f1;
+    width: 120%;
+    height: 120%;
+    min-width: 100%;
+    right: -10px;
+    top: -10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    transform: scale(1.5);
+    z-index: -9;
+}
+
+.isiboxer{
+ padding:20px;
+ color:#fff;
+}
+
+.isiboxer p{
+ padding:0 0 30px!important;
+ margin:0!important;
+ font-size:0.9em!important;
+}
+
+.isiboxer h3{
+ font-size:1.2em!important;
+}
+
+.figurebounce{
+ animation: bounceku 1.3s infinite alternate-reverse;
+}
+
+@-webkit-keyframes bounceku{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{-webkit-transform:translate3d(0,30px,0);transform:translate3d(0,30px,0)}}@keyframes bounceku{0%{-webkit-transform:translateZ(0);transform:translateZ(0)}to{-webkit-transform:translate3d(0,30px,0);transform:translate3d(0,30px,0)}}
+
+.atashome {
+    margin: 0;
+    padding: 60px 0 80px 0;
+	color:#fff;
+	overflow:hidden;
+}
+
+.atashome:before {
+    position: absolute;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4m3EVMtTYSPBZpCfl9ScV92hgqXQHprlv_5LDBe-G5pEMakDf98Qg-d2lVMtIqHakxtyfLHnlkBSTn2JLGS6AjJnZxtS8OLWiqMKLAC73thCSUph9RES8QRqZxYfGySaQsSoLgRuaV2k/s16000/ezgif-2-9868dcb9168e.gif);
+    color: #f1f1f1;
+    width: 120%;
+    height: 120%;
+    min-width: 100%;
+    right: -10px;
+    top: -10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    transform: scale(1.5);
+    z-index: -9;
+}
+
+.atashome button {
+color:#000;
+}
+
+.aboutkiri, .aboutkanan {
+padding:20px 10px 30px 0;
+}
+.boxhome {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+.boxhome1{
+	display: flex;
+    justify-content: space-between;
+	padding:0;
+	max-width: 1200px;
+    margin: 0 auto;
+	overflow: hidden;
+	flex-wrap: wrap-reverse;
+	align-items: center;
+}
+.boxhome2{
+	display: flex;
+    justify-content: space-between;
+	padding:0;
+	max-width: 1200px;
+    margin: 0 auto;
+	overflow: hidden;
+	flex-wrap: wrap-reverse;
+}
+.form1 {
+    padding: 40px;
+	width:100%;
+	float:left;
+}
+.formku {
+    padding: 0;
+    width: 96%;
+    margin: 0 auto;
+    background: RGBA(249,190,2,1);
+	border-radius:10px;
+	overflow:hidden;
+	-webkit-transition:all 0.3s ease 0s;-o-transition:all 0.3s ease 0s;transition:all 0.3s ease 0s;
+}
+.formku:hover{
+    padding: 0;
+    margin: 0 auto;
+    background: RGBA(249,190,2,0.15);
+	border-radius:10px;
+	overflow:hidden;
+	-webkit-transition:all 0.3s ease 0s;-o-transition:all 0.3s ease 0s;transition:all 0.3s ease 0s;
+}
+.form2{
+	padding: 10px;
+    float: right;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+}
+.form2 h1{
+	margin-bottom:30px!important;
+}
+.form1 .uk-input, .form1 .uk-textarea{
+    border-radius: 10px!important;
+}
+.alamat{
+	margin: 0;
+    width: 100%;
+    float: right;
+    padding:0;
+}
+.alamat span{
+	line-height:2.5em;
+	font-weight:600;
+}
+.alamat a{
+    padding: 0;
+	margin-right:10px
+}
+.boxvideo {
+	margin: 0px!important;
+    width: 100%;
+    padding: 0!important;
+	border-radius: 10px;
+}
+
+.boxvideo img{
+filter:brightness(0.7);
+-webkit-filter: blur(0.7);
+}
+
+.boxvideo a{
+	text-align: center;
+    height: auto;
+    width: 100%;
+    position: relative;
+	color:#F9BE02;
+	filter: opacity(80%);
+	-webkit-filter: opacity(80%);
+}
+
+.boxvideo i {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    right: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.boxvideo a:hover,.boxvideo a:focus {
+	color:#fff;
+	filter: opacity(100%);
+	-webkit-filter: opacity(100%);
+}
+
+.videoao, .videooa {
+padding:20px 20px 20px 5px;
+color: #000;
+}
+
+.tengahhome2 {
+    background-color: none;
+	margin: 0 auto;
+    padding: 35px 0px;
+    overflow: hidden;
+	width:100%;
+}
+.gbr {
+    position: absolute;
+	width: 480px;
+    height: 410px;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguhB7LDZvUinTQ-eROkPQXE0NQ_HrPldcQ_ib4NZoqYO7_YBkyBLeLo0RTI3bHusaKa96pTFj8EVutvbzjy2xTq03KBFZbjH0nga8h2ie6lbYE7dnpSO4J0tIOJ0HTz8l7VS57Sr-oodrjG51zxwzuRynvuBeVZPt6fp97ZcCy9uy6HAbU8TM9StV1/s16000/gambar_ok_02.png) no-repeat;
+    background-size: cover;
+    bottom: 0;
+    right: 0;
+	z-index:-1;
+}
+.linkmidku {
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    font-family: manrope;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: baseline;
+    margin: 0 auto;
+    padding: 0 17px 30px;
+	overflow:hidden;
+	background-color:#fff;
+}
+.linkmidku1, .linkmidku2, .linkmidku3, .linkmidku4{
+	display: block;
+    position: relative;
+    width: 20%;
+    text-align: left;
+    margin: 20px 10px 10px;
+}
+.linkmidku h1 {
+    font-size: 2.23125rem;
+    line-height: 1.2;
+    font-weight: 900;
+    text-align: left;
+    width: 100%;
+    display: block;
+    padding: 5px;
+    margin: 0 auto;
+}
+.linkmidku h2{
+  font-size:0.8em;
+  font-weight:900;
+  text-transform:uppercase;
+  margin: 0 0 8px 0!important;
+  letter-spacing:0.2em;
+}
+
+.linkmidku ul{
+  list-style-type: none;
+  font-size:1em;
+  font-weight:bold;
+  padding:0;
+  margin:0 0 20px 0;
+  letter-spacing:normal;
+}
+.linkmidku li{
+  padding:0px;
+  
+}
+.linkmidku li a{
+  color:#000;
+  text-transform:lowercase;
+  text-decoration: none;
+}
+.linkmidku li a:hover, .linkmidku a:focus{
+  color:#39f!important;
+}
+.imgmidku {
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    font-family: manrope;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: baseline;
+    margin: 0 auto;
+    padding: 0px 15px 30px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.imgmidku1, .imgmidku2, .imgmidku3, .imgmidku4
+{
+    display: block;
+    position: relative;
+    width: 22%;
+    text-align: left;
+    margin: 20px 10px 10px;
+}
+.imgmidku h1 {
+    font-size: 2.23125rem;
+    line-height: 1.2;
+    font-weight: 900;
+    text-align: left;
+    width: 100%;
+    display: block;
+    padding: 5px;
+    margin: 0 auto;
+    text-align: left;
+}
+.imgmidku h2 {
+    font-size: 1em;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 20px 0 3px 0!important;
+    letter-spacing: 0.2em;
+    text-align: center;
+}
+.imgmidku ul {
+    list-style-type: none;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0 0 20px 0;
+    letter-spacing: normal;
+}
+.imgmidku li{
+  padding:0px;
+  text-align: center;
+}
+.imgmidku li a{
+  color:#000;
+  text-transform:lowercase;
+  text-decoration: none;
+}
+.imgmidku li a:hover, .imgmidku a:focus{
+  color:#39f!important;
+}
+
+.uk-slideshow-items:before {
+	font-family:'fontawesome';
+	content:"\f1ce";
+	vertical-align: middle;
+    text-align: center;
+    color: #000;
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    display: block;
+    left: 48%;
+    z-index: -2;
+	-webkit-animation: fa-spin 2s infinite linear;
+	animation: fa-spin 2s infinite linear;
+  }
+  
+.imgshow{
+	width: 100%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+	overflow:hidden;
+	background-color:#fff;
+	padding:0 10px;
+	max-width:1200px;
+}
+.imgshow img{
+	width: 100%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+.imgshow li {
+    padding: 0 5px;
+    text-align: center;
+}
+@media (max-width:767px){
+.imgmidku1, .imgmidku2, .imgmidku3, .imgmidku4
+{
+    width: 42%;
+}
+.linkmidku1, .linkmidku2, .linkmidku3, .linkmidku4
+{
+    width: 42%;
+}
+.atashome {
+    padding: 0 0 40px;
+}
+}
+</style>
+<div class='atashome uk-panel'>
+<div class="boxhome1 uk-grid uk-grid-small" data-uk-grid="">
+			<div class="uk-width-1-2@m uk-first-column">
+				<div class="aboutkiri wow fadeInLeft" data-wow-delay='0.2s' style='visibility: visible;'>
+				<h1 id='typed'>Ahyar Ramadhan ✨</h1>
+				<p class='uk-text-left'>Sejak 2019, <strong>Ahyarra</strong> telah membangun perjalanan sebagai seorang Creative Director dan Designer dari Medan, Indonesia. <strong>Kreativitas dan desain</strong> adalah inti dari apa yang saya lakukan.<br/><br/>Dengan kecintaan pada visual storytelling dan branding, desain yang inovatif dan bermakna menjadi tujuan, menghadirkan karya yang memiliki tujuan jelas dengan menggabungkan seni dan fungsionalitas untuk menghidupkan ide-ide.</p>
+				</div>
+			</div>
+			<div class="uk-width-1-2@m">
+				<div class="aboutkanan uk-text-center wow fadeInRight" data-wow-delay='0.2s' style='visibility: visible;'>
+				<div class="figurebounce"><img src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyB1NiHEDjkxSevVI-nDpqycJx-9f4gFah4x9AB1LhS4Y62r8jLYnmYBvc0mB7lf-6O3lmzaJflYsxOPaRpiG_IHn2dpRLpLCKSg6Uc5klI1FHNjK1Zt7gr6rEbkE9GgNICrM7STGW6fhSMEfqv8mhwgvG4TyneokTK7E3dG0Rf3qxpkZhr2pRBdjb/s16000/gambar_ok_01.png'/></div>
+				</div>
+			</div>
+		</div>
+</div>
+<div class='clear'/>
+<div class='tengahhome2 uk-panel'>
+<div class="boxhome uk-grid uk-grid-small" data-uk-grid="">
+			<div class="uk-width-2-3@m uk-first-column">
+				<div class="videoao uk-text-center">
+<div class='boxvideo uk-align-center wow slideInUp' data-wow-delay='0.2s' style='visibility: visible; animation-name: slideInUp;'>
+<a class='imgoverlay' data-src="https://www.youtube.com/embed/Cqu-zIW2Pe8" data-fancybox="video-gallery"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg"/><i aria-hidden="true" class="fa  fa-play-circle fa-4x"></i></a></div>
+</div></div>
+			<div class="uk-width-1-3@m">
+				<div class="videooa uk-text-left wow fadeInRight" data-wow-delay='0.2s' style='visibility:visible;'>
+				<h1 class='uk-text-left'>A fun journey✨</h1>
+				<p>
+				<strong>Karena pekerjaan seharusnya tidak serumit itu.<br/><br/>karena apa? segampang ini! Segampang apa? Segampang ini!</strong>
+				</p>
+				</div>
+			</div>
+</div>
+</div>
+<div class='clear'/>
+<div class='imgmidku'>
+<h1 class='wow slideInUp'>Yuhuu</h1>
+			<div class='imgmidku1 wow slideInUp'>
+<ul>
+            <img class='imgmid' src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg"/>
+            <h2>Desainer</h2>
+            <li>data1</li>
+</ul>
+			</div>
+			<div class='imgmidku2 wow slideInUp'>
+<ul>
+            <img class='imgmid' src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg"/>
+            <h2>Desainer</h2>
+            <li>data2</li>
+</ul>
+			</div>
+			<div class='imgmidku3 wow slideInUp'>
+<ul>
+            <img class='imgmid' src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg"/>
+            <h2>Desainer</h2>
+            <li>data3</li>
+</ul>
+			</div>
+			<div class='imgmidku4 wow slideInUp'>
+ <ul>
+            <img class='imgmid' src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg"/>
+            <h2>Desainer</h2>
+            <li>data4</li>
+</ul>
+			</div>
+<div class="imgshow wow slideInUp" data-uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 4000">
+ 
+	<div class="uk-position-relative uk-visible-toggle uk-light">
+ 
+		<ul class="uk-slideshow-items">
+			<li>
+				<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg" alt="" data-uk-cover=""/>
+			</li>
+			<li>
+				<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg" alt="" data-uk-cover=""/>
+			</li>
+			<li>
+				<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtATg3G37vklS1WiBjEcSuhyphenhyphendeGPkxssWjQsmQthXdBaNEhjCugMR35x5HMJDvtJjzEL2uAT6LN2ydXMuYetW2yQVyStA31jvYykKzu7wpJkKWcJLZpXcc3rilg6jpevwhbKlIPUtpHUE/s16000/video_thumb.jpg" alt="" data-uk-cover=""/>
+			</li>
+		</ul>
+ 
+		<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" data-uk-slidenav-previous="" data-uk-slideshow-item="previous"></a>
+		<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" data-uk-slidenav-next="" data-uk-slideshow-item="next"></a>
+ 
+	</div>
+ 
+	<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+</div>
+</div>
+<div class='clear'/>
+<div class='linkmidku'>
+<h1 class='wow fadeInLeft'>Layanan</h1>
+			<div class='linkmidku1 wow slideInUp'>
+  <h2>IDENTITY</h2>
+<ul>
+            <li>Brand Naming</li>
+            <li>Brand Strategy</li>
+            <li>Tagline Development</li>
+            <li>Visual Identity & Logo</li>
+            <li>Brand Applications</li>
+			<li>Brand Identity Guideline</li>
+</ul>
+			</div>
+			<div class='linkmidku2 wow slideInUp'>
+  <h2>MISC.</h2>
+<ul>
+            <li>Company Profile</li>
+            <li>Books & Editorial</li>
+            <li>Collaterals</li>
+			<li>Packaging</li>
+            <li>Campaign</li>
+            <li>Products</li>
+</ul>
+			</div>
+			<div class='linkmidku3 wow slideInUp'>
+  <h2>DIGITAL</h2>
+<ul>
+            <li>Website</li>
+            <li>UI/UX</li>
+            <li>Motion</li>
+			<li>Icon Design</li>
+			<li>Illustration</li>
+			<li>Photography</li>
+</ul>
+			</div>
+			<div class='linkmidku4 wow slideInUp'>
+  <h2>ENVIRONMENTAL</h2>
+<ul>
+            <li>Wayfinding Design</li>
+            <li>Environmental Graphic</li>
+			<li>Social Media Guideline</li>
+            <li>Exhibition Design</li>
+            <li>Installations</li>
+            <li>Interior Direction</li>
+</ul>
+			</div>
+</div>
+<div class='clear'/>
+<div class='footerhome1 uk-panel'>
+<div class="boxhome2 uk-grid uk-grid-small" data-uk-grid="">
+			<div class="uk-width-2-3@m uk-first-column">
+			<div class='formku wow slideInUp' data-wow-delay='0.2s' style='visibility: visible; animation-name: slideInUp;'>
+				<div class="form1 uk-text-left">
+  <div class="kotakemail">
+  <div class="ContactForm" id="ContactForm153">
+  <div class="contact-form-widget">
+    <div class="form">
+      <form name="contact-form">
+        <div class="uk-margin">
+          <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="user"></span>
+            <input class="contact-form-name uk-input" id="ContactForm153_contact-form-name" name="name" placeholder="Name *" type="text" value="" />
+          </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="mail"></span>
+            <input class="contact-form-email uk-input" id="ContactForm153_contact-form-email" name="email" placeholder="Email *" type="text" value="" />
+          </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-inline uk-width-1-1">
+            <textarea class="contact-form-email-message uk-textarea" id="ContactForm153_contact-form-email-message" name="email-message" placeholder="Message *" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="uk-button uk-button-danger">
+          <span>Send</span><span class="uk-margin-small-left" data-uk-icon="forward"></span>
+          <input class="contact-form-button contact-form-button-submit" id="ContactForm153_contact-form-submit" value="" />
+        </div>
+        <div class="contact-form-message-box">
+          <p class="contact-form-error-message" id="ContactForm153_contact-form-error-message"></p>
+          <p class="contact-form-success-message" id="ContactForm153_contact-form-success-message"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){var Bid="3313929155912668823";document.addEventListener("DOMContentLoaded",function(){_WidgetManager._RegisterWidget("_ContactFormView",new _WidgetInfo("ContactForm153","sidenav_section",document.getElementById("ContactForm153"),{contactFormMessageSendingMsg:"Sending...",contactFormMessageSentMsg:"Your message has been sent.",contactFormMessageNotSentMsg:"Message could not be sent. Please try again later.",contactFormInvalidEmailMsg:"A valid email address is required.",contactFormEmptyMessageMsg:"Message field cannot be empty.",title:"Contact Form",blogId:Bid,contactFormNameMsg:"Name",contactFormEmailMsg:"Email",contactFormMessageMsg:"Message",contactFormSendMsg:"Send",submitUrl:"https://www.blogger.com/contact-form.do"},"displayModeFull"))})})();
+</script>
+  </div>
+				</div></div>
+			</div>
+			<div class="uk-width-1-3@m">
+				<div class="form2 uk-text-left wow fadeInRight" data-wow-delay='0.2s' style='visibility:visible;'>
+<h1 class="uk-text-left">Narahubung 🤙</h1>
+<div class='alamat'>
+<address>
+  <strong>AHYARRA</strong><br/>
+  Pangkalan Masyhur, Medan Johor<br/>
+  Medan, Sumatera Utara, 20143<br/>
+  <span><a href="mailto:contact@ahyarra.com" data-uk-icon="icon: mail; ratio: 1"></a> contact@ahyarra.com</span><br/>
+  <span><a href="https://wa.me/6285155119809/?text=halo%20yar🚀" data-uk-icon="icon: whatsapp; ratio: 1"></a> 0851 5511 9809</span><br/>
+</address>
+</div>
+				</div>
+			</div>
+</div>
+<div class='gbr wow fadeInRight' data-wow-delay='0.2s' style='visibility: visible;'/>
+</div>
+</b:if>
