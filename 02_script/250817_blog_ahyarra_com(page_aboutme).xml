@@ -133,6 +133,10 @@ margin: 20px auto;
 	color:#000;
 	overflow:hidden;
 	position:relative;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaV1Y6NwC4bUcmCteXE_CF6lz9SkNsjDMxYuiWslc2KmIVkxrhsxdfIzp2GUOpbzbOfMOmfbrFarJcOChbJbl731brUx4I4Ho44BS2eahImkrv850qD5cV8yv_bHICTlPGDRhfscJC4REXilBKATgSW4hMQ9uds0_SfQOfUFX2_2FjmJD-fDt5ga6Hmg/w1400/DSC00043.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .atashome::after{
@@ -149,14 +153,16 @@ color:#000;
 padding:20px 10px 30px 0;
 }
 
-.boxhome2, .boxhome1{
-	display: flex;
+.boxhome2, .boxhome1 {
+    display: flex;
     justify-content: space-between;
-	padding:0;
-	max-width: 1200px;
+    padding: 0;
+    max-width: 1200px;
     margin: 60px auto 60px;
-	overflow: hidden;
-	flex-wrap: wrap-reverse;
+    overflow: hidden;
+    flex-wrap: wrap-reverse;
+    z-index: 2;
+    position: relative;
 }
 
 .boxhome1 p {
@@ -274,12 +280,12 @@ text-align:left;
 .gbr {
     position: absolute;
 	width: 380px;
-    height: 310px;
-    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguhB7LDZvUinTQ-eROkPQXE0NQ_HrPldcQ_ib4NZoqYO7_YBkyBLeLo0RTI3bHusaKa96pTFj8EVutvbzjy2xTq03KBFZbjH0nga8h2ie6lbYE7dnpSO4J0tIOJ0HTz8l7VS57Sr-oodrjG51zxwzuRynvuBeVZPt6fp97ZcCy9uy6HAbU8TM9StV1/s16000/gambar_ok_02.png) no-repeat;
+    height: 290px;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoZX8sC4sfC1rmfrm4u-JO3ohE-wa_SneQ-i3VnhSiNm6eKMvsK_BoDet6_A474ZCirBCVkvGXSEXEzhCWWNi4iSoPBCcY5OlA-Ot_w81vcyP7iNc6MZusjs77gjkpJmG0e8LAsLKbhzdvtqhpIMLOcvspRXW8BgoFvgQPxu4KXLlhi3lSaiShz77gZg/s16000/image%2013.png) no-repeat;
     background-size: cover;
     bottom: 0;
     right: 0;
-	z-index:-1;
+	z-index:1;
 }
 .linkmidku {
     display: flex;
@@ -515,7 +521,7 @@ padding: 0 20px;}
 <h1>
 I'm <span class='typed'></span>
 </h1>
-								<p class="header-intro-text wow fadeInUp" data-wow-duration=".6s" data-wow-delay=".8s" style="visibility: visible; animation-duration: 0.6s; animation-delay: 0.8s;"><strong>AKA Ahyar Ramadhan</strong>, seorang Content Strategist di perusahaan publik dan lebih dari 5 tahun sebagai Creative Designer, memungkinkan saya untuk menyusun strategi konten yang tidak hanya kreatif, tetapi juga efektif dalam mencapai tujuan bisnis.</p>
+								<p class="header-intro-text wow fadeInUp" data-wow-duration=".6s" data-wow-delay=".8s" style="visibility: visible; animation-duration: 0.6s; animation-delay: 0.8s;"><strong>Panggil saya Bang Ahyar! </strong>😁, pernah lama jadi Creative Designer, sekarang jadi Content Strategist. Jadi kalau ada konten yang keren tapi nggak efektif, atau strategi yang rapi tapi nggak seru? Nah, di situlah saya masuk buat nyetir, biar dua-duanya jalan bareng. 🚀</p>
 							</div>
 			</div>
 		</div>
@@ -529,16 +535,16 @@ I'm <span class='typed'></span>
 </div></div>
 			<div class="uk-width-1-3@m">
 				<div class="videooa uk-text-left wow fadeInRight" data-wow-delay="0.2s" style="visibility: visible;">
-				<h1>Journey ✨</h1>
+				<h1>But Why? 🤔</h1>
 				<p>
-				<strong>Kreativitas dan desain</strong> adalah inti dari apa yang saya lakukan. Dengan kecintaan pada visual, storytelling, dan branding, serta desain yang inovatif dan bermakna menjadi tujuan. Berfokus dalam menghadirkan karya yang memiliki tujuan jelas dengan menggabungkan seni dan fungsionalitas untuk menghidupkan ide kreatif.
+				Desain yang keren doang? Biasa. Tapi desain yang bercerita? <strong>Nah, itu baru kerjaan saya! </strong><br/>Kalau desain cuma sekedar ada, mending langsung ke percetakan. Tapi kalau mau yang ada makna, baru deh kita ngobrol. Feel free to contact me, siapa tahu kita bisa bikin cerita bareng. 🔥
 				</p>
 				</div>
 			</div>
 </div>
 <div class="imgmidku">
 <div class='linkmidku'>
-<h1 class='wow fadeInLeft' style='margin:8px'>Present for You 🚀</h1>
+<h1 class='wow fadeInLeft' style='margin:8px'> Workframe ✨</h1>
 			<div class='linkmidku1 wow slideInUp'>
   <h2>IDENTITY</h2>
 <ul>
@@ -573,14 +579,14 @@ I'm <span class='typed'></span>
 </ul>
 			</div>
 			<div class='linkmidku4 wow slideInUp'>
-  <h2>ENVIRONMENTAL</h2>
+  <h2>STORYLINE</h2>
 <ul>
-            <li>Wayfinding Design</li>
+            <li>Videography</li>
             <li>Environmental Graphic</li>
 			<li>Social Media Guideline</li>
-            <li>Exhibition Design</li>
-            <li>Installations</li>
-            <li>Interior Direction</li>
+            <li>Event &amp; Exhibition</li>
+            <li>Company Profile</li>
+            <li>Brand Consultant</li>
 </ul>
 			</div>
 </div>
@@ -630,7 +636,7 @@ I'm <span class='typed'></span>
 			</div>
 			<div class="uk-width-1-3@m">
   <div class="kotakkontak wow slideInUp">
-<h1>Narahubung 🤙</h1>
+<h1>Contact Me Ya! 🤙</h1>
 <br />
 E: ahyarra.ar@gmail.com
 <br />
