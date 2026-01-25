@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Link Generator (Fixed)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+        input[type="text"]:focus {
+            border-color: #1a73e8;
+        }
+        button#generateBtn {
+            padding: 12px 25px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            min-width: 120px;
+        }
+        button#generateBtn:hover { background-color: #1557b0; }
+        
+        /* Status Bar */
+        #statusDisplay {
+            text-align: center;
+            margin-bottom: 25px;
+            height: 30px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .badge.native { background-color: #34A853; } /* Green for Sheets/Docs */
+        .badge.binary { background-color: #EA4335; } /* Red for PDF/Zip */
+        .badge.form { background-color: #673AB7; }   /* Purple for Forms */
+
+        /* Results Area */
+        .result-container { display: flex; flex-direction: column; gap: 18px; }
+        
+        .card {
+            background: white;
+            border-left: 6px solid #ccc;
+            padding: 18px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); }
+
+        /* Card Colors */
+        .card.type-download { border-left-color: #1a73e8; } /* Blue */
+        .card.type-copy { border-left-color: #fbbc04; }     /* Yellow */
+        .card.type-preview { border-left-color: #34a853; }  /* Green */
+        .card.type-pdf { border-left-color: #ea4335; }      /* Red */
+
+        .card h3 { margin: 0 0 6px 0; font-size: 17px; color: #202124; display: flex; align-items: center; justify-content: space-between; }
+        .card p { margin: 0 0 12px 0; font-size: 14px; color: #5f6368; line-height: 1.4; }
+        
+        .link-wrapper {
+            display: flex;
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .link-text {
+            flex-grow: 1;
+            padding: 10px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            color: #3c4043;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: flex; 
+            align-items: center;
+        }
+        .copy-btn {
+            background: white;
+            border: none;
+            border-left: 1px solid #dadce0;
+            padding: 0 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a73e8;
+            font-size: 14px;
+            transition: background 0.1s;
+        }
+        .copy-btn:hover { background: #e8f0fe; }
+        .copy-btn:active { background: #d2e3fc; }
+
+    </style>
+</head>
+<body>
+
+    <h1>Drive Link Tools</h1>
+    <p class="subtitle">Generate link Direct Download, Force Copy, & Preview dengan benar.</p>
+    
+    <div class="input-group">
+        <input type="text" id="inputUrl" placeholder="Paste link Google Drive (Docs, Sheets, atau File Biasa)..." onkeypress="if(event.key === 'Enter') processLink()">
+        <button id="generateBtn" onclick="processLink()">Generate</button>
+    </div>
+
+    <div id="statusDisplay"></div>
+    <div id="results" class="result-container"></div>
+
+    <script>
+        function processLink() {
+            const inputUrl = document.getElementById('inputUrl').value.trim();
+            const resultsDiv = document.getElementById('results');
+            const statusDisplay = document.getElementById('statusDisplay');
+            
+            resultsDiv.innerHTML = ''; 
+            statusDisplay.innerHTML = '';
+
+            if (!inputUrl) return;
+
+            // 1. Ekstrak File ID dengan Regex yang lebih kuat
+            const idMatch = inputUrl.match(/[-\w]{25,}/);
+            
+            if (!idMatch) {
+                alert("ID File tidak ditemukan! Pastikan link valid.");
+                return;
+            }
+            
+            const fileId = idMatch[0];
+            
+            // 2. Deteksi Tipe File
+            let fileType = 'binary'; // Default: File biasa (zip/pdf/jpg)
+            let nativeFormat = '';   // xlsx, docx, pptx
+            let serviceName = '';    // spreadsheets, document, presentation
+
+            if (inputUrl.includes('/spreadsheets/')) {
+                fileType = 'native';
+                serviceName = 'spreadsheets';
+                nativeFormat = 'xlsx';
+            } else if (inputUrl.includes('/document/')) {
+                fileType = 'native';
+                serviceName = 'document';
+                nativeFormat = 'docx';
+            } else if (inputUrl.includes('/presentation/')) {
+                fileType = 'native';
+                serviceName = 'presentation';
+                nativeFormat = 'pptx';
+            } else if (inputUrl.includes('/forms/')) {
+                fileType = 'form';
+                serviceName = 'forms';
+            }
+
+            // Tampilkan Status Badge
+            if (fileType === 'native') {
+                statusDisplay.innerHTML = `<span class="badge native">Terdeteksi: Google ${serviceName.charAt(0).toUpperCase() + serviceName.slice(1)}</span>`;
+            } else if (fileType === 'form') {
+                statusDisplay.innerHTML = `<span class="badge form">Terdeteksi: Google Forms</span>`;
+            } else {
+                statusDisplay.innerHTML = `<span class="badge binary">Terdeteksi: File Biasa (PDF/ZIP/Video)</span>`;
+            }
+
+            // 3. GENERATE LINK
+
+            // --- A. Direct Download (SOLUSI ERROR 500) ---
+            if (fileType !== 'form') {
+                let downloadLink = '';
+                let desc = '';
+
+                if (fileType === 'native') {
+                    // Jika Native -> Export format (Anti Error 500)
+                    downloadLink = `https://docs.google.com/${serviceName}/d/${fileId}/export?format=${nativeFormat}`;
+                    desc = `Mengunduh file Google ini dengan format <b>.${nativeFormat}</b> (Excel/Word/PPT).`;
+                } else {
+                    // Jika Binary -> Export download biasa
+                    downloadLink = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                    desc = `Memaksa browser langsung mengunduh file aslinya (ZIP, RAR, PDF, dll).`;
+                }
+
+                createCard('Direct Download', desc, downloadLink, 'type-download');
+            }
+
+            // --- B. Force Copy (Hanya Native & Form) ---
+            if (fileType === 'native' || fileType === 'form') {
+                let copyLink = `https://docs.google.com/${serviceName}/d/${fileId}/copy`;
+                createCard('Force Copy', 
+                    'Memaksa penerima link untuk membuat salinan (Make a Copy) ke Drive mereka sendiri.', 
+                    copyLink, 'type-copy');
+            }
+
+            // --- C. PDF Export (Hanya Native Docs/Sheet/Slide) ---
+            if (fileType === 'native') {
+                let pdfLink = `https://docs.google.com/${serviceName}/d/${fileId}/export?format=pdf`;
+                createCard('Direct PDF', 
+                    'Langsung mengunduh dokumen ini sebagai file <b>.PDF</b>.', 
+                    pdfLink, 'type-pdf');
+            }
+
+            // --- D. Clean Preview (Universal) ---
+            // Native pakai /preview, Binary pakai /preview
+            let previewBase = fileType === 'binary' ? 'drive.google.com/file' : `docs.google.com/${serviceName}`;
+            let previewLink = `https://${previewBase}/d/${fileId}/preview`;
+            
+            createCard('Clean Preview', 
+                'Tampilan layar penuh tanpa menu yang mengganggu. Cocok untuk presentasi atau embed.', 
+                previewLink, 'type-preview');
+
+            // --- E. Template Preview (Hanya Native) ---
+            if (fileType === 'native') {
+                let templateLink = `https://docs.google.com/${serviceName}/d/${fileId}/template/preview`;
+                createCard('Template Preview', 
+                    'Pengguna bisa melihat isi dulu, lalu ada tombol "Use Template" di pojok kanan.', 
+                    templateLink, 'type-preview');
+            }
+        }
+
+        function createCard(title, desc, url, typeClass) {
+            const resultsDiv = document.getElementById('results');
+            
+            const card = document.createElement('div');
+            card.className = `card ${typeClass}`;
+            
+            card.innerHTML = `
+                <h3>${title}</h3>
+                <p>${desc}</p>
+                <div class="link-wrapper">
+                    <div class="link-text">${url}</div>
+                    <button class="copy-btn" onclick="copyToClipboard(this, '${url}')">COPY</button>
+                </div>
+            `;
+            
+            resultsDiv.appendChild(card);
+        }
+
+        function copyToClipboard(btnElement, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = "OK!";
+                btnElement.style.color = "#34A853";
+                
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.style.color = "#1a73e8";
+                }, 1500);
+            });
+        }
+    </script>
+
+</body>
+</html>
