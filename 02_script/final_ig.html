@@ -36,19 +36,31 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
             text-align: center;
             padding: 10px;
             position: relative;
         }
 
+        /* Hover biasa (mouse) */
         .box:hover { border-color: #3498db; background-color: #ebf5fb; }
+
+        /* EFEK SAAT DRAG FILE (PERBAIKAN) */
+        .box.active-drag {
+            border-style: solid;
+            border-color: #3498db;
+            background-color: #d6eaf8; /* Biru lebih gelap dikit biar kerasa */
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Saat file sudah masuk */
         .box.filled { border-style: solid; border-color: #27ae60; background-color: #e9f7ef; }
 
-        .icon { font-size: 30px; margin-bottom: 10px; }
-        .label { font-weight: bold; font-size: 1.1em; }
-        .count { font-size: 0.9em; color: #27ae60; font-weight: bold; margin-top: 5px; }
-        .desc { font-size: 0.8em; color: #95a5a6; margin-top: 5px; }
+        .icon { font-size: 30px; margin-bottom: 10px; pointer-events: none; }
+        .label { font-weight: bold; font-size: 1.1em; pointer-events: none; }
+        .count { font-size: 0.9em; color: #27ae60; font-weight: bold; margin-top: 5px; pointer-events: none; }
+        .desc { font-size: 0.8em; color: #95a5a6; margin-top: 5px; pointer-events: none; }
 
         /* Area Tombol */
         .action-area {
@@ -219,6 +231,7 @@
                 }
 
                 // Update UI Box
+                box.classList.remove('active-drag'); // Hapus efek drag jika ada
                 box.classList.add('filled');
                 document.getElementById(countId).innerText = `${usernames.length} Akun`;
                 document.getElementById(txtId).innerText = file.name;
@@ -228,8 +241,33 @@
             reader.readAsText(file);
         };
 
-        box.addEventListener('dragover', (e) => e.preventDefault());
-        box.addEventListener('drop', (e) => { e.preventDefault(); if(e.dataTransfer.files[0]) process(e.dataTransfer.files[0]); });
+        // --- PERBAIKAN DRAG & DROP VISUAL ---
+        
+        // 1. Saat file masuk area (Drag Enter)
+        box.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            box.classList.add('active-drag');
+        });
+
+        // 2. Saat file berada di atas area (Drag Over)
+        box.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            box.classList.add('active-drag'); // Pastikan kelas tetap ada
+        });
+
+        // 3. Saat file keluar area (Drag Leave)
+        box.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            box.classList.remove('active-drag');
+        });
+
+        // 4. Saat file dijatuhkan (Drop)
+        box.addEventListener('drop', (e) => { 
+            e.preventDefault(); 
+            box.classList.remove('active-drag'); // Hapus efek visual
+            if(e.dataTransfer.files[0]) process(e.dataTransfer.files[0]); 
+        });
+
         input.addEventListener('change', (e) => { if(e.target.files[0]) process(e.target.files[0]); });
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Drive Link Generator (Fixed)</title>
+    <title>Google Drive Link Generator (+Dev Tools)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -82,6 +82,11 @@
         /* Results Area */
         .result-container { display: flex; flex-direction: column; gap: 18px; }
         
+        .section-divider {
+            font-size: 14px; font-weight: 700; text-transform: uppercase; color: #888;
+            margin-top: 15px; border-bottom: 2px solid #e0e0e0; padding-bottom: 5px;
+        }
+
         .card {
             background: white;
             border-left: 6px solid #ccc;
@@ -97,6 +102,7 @@
         .card.type-copy { border-left-color: #fbbc04; }     /* Yellow */
         .card.type-preview { border-left-color: #34a853; }  /* Green */
         .card.type-pdf { border-left-color: #ea4335; }      /* Red */
+        .card.type-dev { border-left-color: #607D8B; background: #f8f9fa; } /* Grey for Dev */
 
         .card h3 { margin: 0 0 6px 0; font-size: 17px; color: #202124; display: flex; align-items: center; justify-content: space-between; }
         .card p { margin: 0 0 12px 0; font-size: 14px; color: #5f6368; line-height: 1.4; }
@@ -138,8 +144,8 @@
 </head>
 <body>
 
-    <h1>Drive Link Tools</h1>
-    <p class="subtitle">Generate link Direct Download, Force Copy, & Preview dengan benar.</p>
+    <h1>Drive Link Tools + Dev</h1>
+    <p class="subtitle">Generate link User & Data Developer (File ID, GID, CSV)</p>
     
     <div class="input-group">
         <input type="text" id="inputUrl" placeholder="Paste link Google Drive (Docs, Sheets, atau File Biasa)..." onkeypress="if(event.key === 'Enter') processLink()">
@@ -201,7 +207,38 @@
                 statusDisplay.innerHTML = `<span class="badge binary">Terdeteksi: File Biasa (PDF/ZIP/Video)</span>`;
             }
 
-            // 3. GENERATE LINK
+            // ============================================
+            // 1. BAGIAN DEVELOPER DATA (NEW) - Disisipkan
+            // ============================================
+            const devHeader = document.createElement('div');
+            devHeader.className = 'section-divider';
+            devHeader.innerText = '🛠️ Developer Data';
+            resultsDiv.appendChild(devHeader);
+
+            // Card 1: File ID / Sheet ID
+            createCard('Sheet ID / File ID', 'ID unik untuk variabel <code>const SHEET_ID</code>.', fileId, 'type-dev');
+
+            // Card 2 & 3: Khusus Spreadsheet (GID & CSV)
+            if (serviceName === 'spreadsheets') {
+                // Ekstrak GID
+                let gid = '0'; // Default
+                const gidMatch = inputUrl.match(/[#&]gid=(\d+)/);
+                if (gidMatch) gid = gidMatch[1];
+
+                createCard('GID (Tab ID)', 'ID Tab spesifik untuk variabel <code>const GID</code>.', gid, 'type-dev');
+                
+                // CSV Link
+                const csvLink = `https://docs.google.com/spreadsheets/d/${fileId}/export?format=csv&gid=${gid}`;
+                createCard('CSV Export Link', 'Link langsung untuk <code>fetch()</code> data ke HTML.', csvLink, 'type-dev');
+            }
+
+            // ============================================
+            // 2. BAGIAN FITUR ASLI (ORIGINAL) - Tidak Ada yang dihapus
+            // ============================================
+            const userHeader = document.createElement('div');
+            userHeader.className = 'section-divider';
+            userHeader.innerText = '🔗 User Links';
+            resultsDiv.appendChild(userHeader);
 
             // --- A. Direct Download (SOLUSI ERROR 500) ---
             if (fileType !== 'form') {
@@ -230,6 +267,7 @@
             }
 
             // --- C. PDF Export (Hanya Native Docs/Sheet/Slide) ---
+            // FITUR INI SAYA KEMBALIKAN (TIDAK DIHAPUS)
             if (fileType === 'native') {
                 let pdfLink = `https://docs.google.com/${serviceName}/d/${fileId}/export?format=pdf`;
                 createCard('Direct PDF', 
@@ -247,6 +285,7 @@
                 previewLink, 'type-preview');
 
             // --- E. Template Preview (Hanya Native) ---
+            // FITUR INI SAYA KEMBALIKAN (TIDAK DIHAPUS)
             if (fileType === 'native') {
                 let templateLink = `https://docs.google.com/${serviceName}/d/${fileId}/template/preview`;
                 createCard('Template Preview', 
