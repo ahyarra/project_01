@@ -16,6 +16,45 @@ main .main_content {
     padding-right: 0px!important;
 }
 
+/* 1. Background Modal: Putih Transparan + Blur */
+.uk-lightbox {
+    background: rgba(255, 255, 255, 0.5) !important; /* Putih 50% */
+    backdrop-filter: blur(10px); /* Blur latar belakang */
+    -webkit-backdrop-filter: blur(10px); /* Support untuk Safari */
+}
+
+/* 2. Tombol Close (X) dan Panah Navigasi */
+/* Kita ubah jadi hitam karena background sekarang putih */
+.uk-lightbox-button, 
+.uk-lightbox-toolbar-icon {
+    color: #000 !important; 
+    background: rgba(255,255,255,0.2) !important; /* Sedikit kotak transparan */
+}
+
+/* 3. Mengatur Posisi SPINNER (Loading) */
+.uk-lightbox .uk-spinner {
+    color: #333 !important; /* Ubah warna spinner jadi gelap */
+    
+    /* Posisikan di tengah layar secara absolut */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Pastikan dia ada di layer bawah (di belakang video) */
+    z-index: 1; 
+}
+
+/* 4. Mengatur Iframe Video */
+.uk-lightbox-iframe {
+    /* Pastikan video ada di layer atas (menutupi spinner saat muncul) */
+    position: relative;
+    z-index: 10; 
+    
+    /* Opsional: Beri background hitam agar spinner benar-benar tertutup saat frame dimuat */
+    background: #000; 
+}
+
 .single_post .post_title {
     display:none;
 }
@@ -530,13 +569,16 @@ I'm <span class='typed'></span>
 <div class="boxhome1 uk-grid uk-grid-small" data-uk-grid="">
 			<div class="uk-width-2-3@m uk-first-column">
 <div class="videoao uk-text-center">
-<div class="boxvideo uk-align-center" uk-scrollspy="cls: uk-animation-slide-up; delay: 200">
-<a class="imgoverlay" href="https://www.youtube.com/watch?v=NJvseMsLIqo" data-caption="YouTube Video" uk-lightbox>
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl8bIjqJKNv52rOR7jyIfvHF4dH7O0rQmzL6jad7EUyI0izwVaKZoEbUX_3bv3hfBx0bqkXsCvP11AUIZ42sXrYULgam4PIcwtYppPiCfNamAiAJupZqDc-pro1e_xdG4OJLC_tuHdmJQw3roEaH2G9EzftXy97ndHW3Zx1TYTHjqL4keDm83quZZCxg/s1920/vlcsnap-2023-01-24-13h00m22s762.png" />
-    <i aria-hidden="true" class="fa fa-play-circle fa-4x"></i>
-</a>
+  <div uk-lightbox="video-autoplay: true">
+    <div class="boxvideo uk-align-center" uk-scrollspy="cls: uk-animation-slide-bottom; delay: 200">
+      <a class="imgoverlay" href="https://www.youtube.com/watch?v=NJvseMsLIqo" data-caption="Ahyarra Video">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl8bIjqJKNv52rOR7jyIfvHF4dH7O0rQmzL6jad7EUyI0izwVaKZoEbUX_3bv3hfBx0bqkXsCvP11AUIZ42sXrYULgam4PIcwtYppPiCfNamAiAJupZqDc-pro1e_xdG4OJLC_tuHdmJQw3roEaH2G9EzftXy97ndHW3Zx1TYTHjqL4keDm83quZZCxg/s1920/vlcsnap-2023-01-24-13h00m22s762.png" />
+        <i aria-hidden="true" class="fa fa-play-circle fa-4x"></i>
+      </a>
+    </div>
+  </div>
 </div>
-</div></div>
+</div>
 			<div class="uk-width-1-3@m">
 				<div class="videooa uk-text-left" style="visibility: visible;" uk-scrollspy="cls: uk-animation-slide-bottom; delay: 100">
 				<h1>But Why? 🤔</h1>
