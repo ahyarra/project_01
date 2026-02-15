@@ -19,3 +19,7 @@ git remote add origin https://github.com/ahyarra/project_01.git
 ///
 
 git push -u origin master
+
+///
+
+bind 'set enable-bracketed-paste off'
