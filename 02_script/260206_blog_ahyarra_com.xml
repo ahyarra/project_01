@@ -3,26 +3,23 @@
 <html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='rockpool.xml' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
 <script type='text/javascript'>
-var uri = window.location.toString();
-if (uri.indexOf(&quot;%3D&quot;,&quot;%3D&quot;) &gt; 0) {
-  var clean_uri = uri.substring(0, uri.indexOf(&quot;%3D&quot;));
-    window.history.replaceState({}, document.title, clean_uri);
-}
-var uri = window.location.toString();
-if (uri.indexOf(&quot;%3D%3D&quot;,&quot;%3D%3D&quot;) &gt; 0) {
-  var clean_uri = uri.substring(0, uri.indexOf(&quot;%3D%3D&quot;));
-    window.history.replaceState({}, document.title, clean_uri);
-}
-var uri = window.location.toString();
-if (uri.indexOf(&quot;&amp;m=1&quot;,&quot;&amp;m=1&quot;) &gt; 0) {
-  var clean_uri = uri.substring(0, uri.indexOf(&quot;&amp;m=1&quot;));
-    window.history.replaceState({}, document.title, clean_uri);
-}
-var uri = window.location.toString();
-if (uri.indexOf(&quot;?m=1&quot;,&quot;?m=1&quot;) &gt; 0) {
-  var clean_uri = uri.substring(0, uri.indexOf(&quot;?m=1&quot;));
-    window.history.replaceState({}, document.title, clean_uri);
-}
+//<![CDATA[
+(function() {
+    try {
+        var url = new URL(window.location.href);
+        // Cek apakah ada parameter 'm' dan nilainya '1'
+        if (url.searchParams.get('m') === '1') {
+            // Hapus parameter 'm'
+            url.searchParams.delete('m');
+            // Update URL di browser tanpa reload
+            window.history.replaceState(null, document.title, url.toString());
+        }
+    } catch (e) {
+        // Fallback untuk browser purba (sangat jarang terjadi di 2024+)
+        console.log("Browser tidak mendukung URL API");
+    }
+})();
+//]]>
 </script>
 <meta content='#39f' name='theme-color'/>
 <meta content='#39f' name='msapplication-navbutton-color'/>

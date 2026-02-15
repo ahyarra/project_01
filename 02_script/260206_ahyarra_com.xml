@@ -2,6 +2,27 @@
 <!DOCTYPE html>
 <html expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
+
+<script type='text/javascript'>
+//<![CDATA[
+(function() {
+    try {
+        var url = new URL(window.location.href);
+        // Cek apakah ada parameter 'm' dan nilainya '1'
+        if (url.searchParams.get('m') === '1') {
+            // Hapus parameter 'm'
+            url.searchParams.delete('m');
+            // Update URL di browser tanpa reload
+            window.history.replaceState(null, document.title, url.toString());
+        }
+    } catch (e) {
+        // Fallback untuk browser purba (sangat jarang terjadi di 2024+)
+        console.log("Browser tidak mendukung URL API");
+    }
+})();
+//]]>
+</script>
+
     <meta charset='utf-8'/>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <meta content='#0943bb' name='theme-color'/>
