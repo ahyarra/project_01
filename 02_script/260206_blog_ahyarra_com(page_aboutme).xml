@@ -172,7 +172,7 @@ margin: 20px auto;
 	color:#000;
 	overflow:hidden;
 	position:relative;
-	background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaV1Y6NwC4bUcmCteXE_CF6lz9SkNsjDMxYuiWslc2KmIVkxrhsxdfIzp2GUOpbzbOfMOmfbrFarJcOChbJbl731brUx4I4Ho44BS2eahImkrv850qD5cV8yv_bHICTlPGDRhfscJC4REXilBKATgSW4hMQ9uds0_SfQOfUFX2_2FjmJD-fDt5ga6Hmg/w1400/DSC00043.jpg);
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhemCUba3FlYaSaM2CDEMdhHANEmyXy9GEADVU0L2JFuA5eFDI5pwNQ5bd22ehF-5bnRFV0Zvxj5GvFr1L1CAX1U3fHU0S5yCepZvS_4QIldeTe-J3jKZhKeI5NF2wl3ldP-o7IzDbbn9qTlO7MKGtkxJPtoW4ZmRumGbvhM6k-qWUqu_ApHRXGcVDVzg/w1400/imgi_17_DSC00043%201.webp);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -320,7 +320,7 @@ text-align:left;
     position: absolute;
 	width: 380px;
     height: 290px;
-    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoZX8sC4sfC1rmfrm4u-JO3ohE-wa_SneQ-i3VnhSiNm6eKMvsK_BoDet6_A474ZCirBCVkvGXSEXEzhCWWNi4iSoPBCcY5OlA-Ot_w81vcyP7iNc6MZusjs77gjkpJmG0e8LAsLKbhzdvtqhpIMLOcvspRXW8BgoFvgQPxu4KXLlhi3lSaiShz77gZg/s16000/image%2013.png) no-repeat;
+    background: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi5yA3Q2QXnAntUm74QQtQV_wqxW9aafk68ZJuRV5-N4F5VKxLeh99-xz9Btx1tY-itkgBkCZ9K0PHvS8voyb3Z4Z_KL3jgTElISQ1bDB6IEVqw03UpuUQgGYA3HhYb9BCWxl-Py72eEC3QRzDNDzdHkm_l_vbLrJAq76492TQ3yA2RHuEpDOX_En09_Q/s16000/image%202.webp) no-repeat;
     background-size: cover;
     bottom: 0;
     right: 0;
@@ -572,7 +572,7 @@ I'm <span class='typed'></span>
   <div uk-lightbox="video-autoplay: true">
     <div class="boxvideo uk-align-center" uk-scrollspy="cls: uk-animation-slide-bottom; delay: 200">
       <a class="imgoverlay" href="https://www.youtube.com/watch?v=NJvseMsLIqo" data-caption="Ahyarra Video">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl8bIjqJKNv52rOR7jyIfvHF4dH7O0rQmzL6jad7EUyI0izwVaKZoEbUX_3bv3hfBx0bqkXsCvP11AUIZ42sXrYULgam4PIcwtYppPiCfNamAiAJupZqDc-pro1e_xdG4OJLC_tuHdmJQw3roEaH2G9EzftXy97ndHW3Zx1TYTHjqL4keDm83quZZCxg/s1920/vlcsnap-2023-01-24-13h00m22s762.png" />
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgnRMjCd7F0oIjPSl_X7PMcTX8fHJQmqrJzm_I9fi8C6ol4AbKoxOcuBLGWSefWgjn3XpOrENDEXuZZoAWPDEPrc7NeGYCW3ab-bZO3hWdqpS3xOPWSa0MbIeKYV0gewW-TNkifA1z55uRJ8xNCWGJcVwp07ObehDveoDJ70azV0nFsAP2dGIDcD3OmA/s16000/imgi_2_vlcsnap-2023-01-24-13h00m22s762%201.webp" />
         <i aria-hidden="true" class="fa fa-play-circle fa-4x"></i>
       </a>
     </div>

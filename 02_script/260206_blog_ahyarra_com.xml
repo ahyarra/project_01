@@ -2984,8 +2984,8 @@ background-blend-mode: exclusion;
 </div>
 </div>
 <div class='uk-bg-video'>
-<video autoplay='autoplay' id='background-video' loop='true' muted='muted' playsinline='true' poster='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPxZ5YOHVR8jMwydI3Rhj9NHTpeRoSxeoHOxqxdzO_zJIHV_QyL4RsfHQlthEeVkr4iVBtZTaShVu_l_CFW_qv_Glj8R3cdK8CRTk0WF7_Lmx-POeKFnjUcLPPzKDjqV60DWpSVnwUB2qtDh8lMkj80hr2RT1GJisvsDHxC_Z6o3VGeL0hyphenhyphenNOHMdi0Hw/s1920/ahyarra_bg.png'>
-<source src='https://github.com/ahyarramadhan/ahyarra.github.io/raw/master/bg-video_ahyarra.mp4' type='video/mp4'/>
+<video autoplay='autoplay' id='background-video' loop='true' muted='muted' playsinline='true' poster='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhilGwamPFkycRTX-XpZxNtDeJsAl3dlXXHN5iXn-rW2pXTvswrJqSROYBUoLdl5ExSyYuuWyDztQrSlQAn0SoXPhxFm_1rvr-VcR2pN-YAQWrFWq9Hq9B9OUWHS_zKUNQDavnruz5GlXejgh6bsfOi8NL8R2o_dg_s5E5T4chTeOYx1IhFJYKz7eDFjw/s16000/imgi_11_ahyarra_bg%201.webp'>
+<source src='https://github.com/ahyarramadhan/ahyarra.github.io/raw/master/bg-video_ahyarra.webm' type='video/mp4'/>
 </video>
 </div>
 <script type='text/javascript'> 
@@ -3050,21 +3050,21 @@ color:#0943bb;
  
 		<ul class='imgshow uk-slideshow-items'>
 			<li>
-				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFrjcb5Vb22JVSEeeLBHVEwuefH3YTzHSnLXqnQYm4ChcU-v4ymCG3MsWltOj3WHoN9vTFjET4RYrB9dzFoNQUaDnTRygwTYxLfQSRenRmP1NWFXUatLQ7T1NSVKrvgR5Ffli3cbySAmWPgeG2QnchjO9xNZeJvsnZzD-ge5B8qp2nTEIts6kn8gznwA/w1800/ahyarra_desc%20(6).png'/>
+				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8AHcP_gNVa6fUo_RN7kx3UpsQG0Jor6zsgrsCCpANwQ_Ob2OYvtjlYjY5N6S2KBUuqa2J-TW-SW6-j8k2A7qOWE5Q3efVwP_dyohe9PQhd3c66xiCP4m3jeOl0N91Rl4viNCBHfnJ46WVBfYV5BoZSZis576OS0UbcjQrPUg6ujpIsjWVU6g-3Ri9Fw/s16000/shop_ahyarra_03.webp'/>
 			<div class='uk-overlay uk-position-bottom-center uk-padding uk-light' data-uk-slideshow-parallax='opacity: 1,1,0;' style='background: linear-gradient(0deg, rgb(242 242 242), transparent); width:100%; padding: 60px 0 !important; opacity: 1;'>
 <h4 class='uk-margin-remove'>Digital Products</h4>
 <p class='uk-margin-remove'>Solusi instan kebutuhan digitalmu.<br/><a href='/p/sitemap.html'>Read more</a></p>
 </div>
 			</li>
 			<li>
-				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-Rsim-PLM4HKo-FJUQTWUbevwDSahz7TEDXIstQQV_QNsDnbxkmlOKAgXpkH0I7CvNvCsCVq2Cmy7kUJ_oseQNuFWVrWR8rTooXfDzt96PCoBNPWTvxu7kQQj9DIMCQp2tWgzZ5j4VranDNqzHX22aPQ4bmohT7SDpxcbx6wn_XyBLf4KdmuhpxIH0g/w1800/ahyarra_desc%20(1).png'/>
+				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjY1Qw8FZ-9q38l2hOl4RIko4czhmy-PPPuSoh62_YQS5Dz7nwyksjdCWKpxi9dr2QDtmgXI4NoJl1QIy4koOZGxsA4V5bCf_Sy85OTFTPUL_mfuhyiR6IKzijTUbnpJwg79HTS6QmXCinq1GV4FPrWWODhRAi7_oVpP6YZQ-mFa1M9Z4oUGAFugdwhDw/s16000/shop_ahyarra_02.webp'/>
 			<div class='uk-overlay uk-position-bottom-center uk-padding uk-light' data-uk-slideshow-parallax='opacity: 1,1,0;' style='background: linear-gradient(0deg, rgb(242 242 242), transparent); width:100%; padding: 60px 0 !important; opacity: 1;'>
 <h4 class='uk-margin-remove'>Affiliate Items</h4>
 <p class='uk-margin-remove'>Produk pilihan yang direkomendasikan.<br/><a href='/p/sitemap.html'>Read more</a></p>
 </div>
 			</li>
 			<li>
-				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBr1DYGIvKRw3_2lieo8_Ua_-U01pHF9BrUCEtNZVU7fIe-uNzHyEamCqddrRAwrz34UTKsaWBU9nlhJ9FtUnY5D2XsReUFEVTgrpdaMahUpuwMocA2PoQYG_ao97GcjcziJkveWwVRAeCu0jAvB2TuQ-i0LgwvEf4LMK94yXrFvnzYaXS6HEktUfGTg/w1800/ahyarra_desc%20(5).png'/>
+				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1ECPfF4YMrZRRnnt_shht_cxgV1jY0JXGqSqY3RVCovonMmsEK37nSghwavNLFZQ58-xnc7yMhCd8Ihla0P1EfZ2AvfcUDL4e05HkgD6jqDp3Ol4sz-P7nuuC2JUSImpdN8NsPK1NaUDrsVRp-d1KwB_UcSpLV-MGSYk0CLlsiGRcuZGSUU5ycaijyQ/s16000/shop_ahyarra_01.webp'/>
 			<div class='uk-overlay uk-position-bottom-center uk-padding uk-light' data-uk-slideshow-parallax='opacity: 1,1,0;' style='background: linear-gradient(0deg, rgb(242 242 242), transparent); width:100%; padding: 60px 0 !important; opacity: 1;'>
 <h4 class='uk-margin-remove'>Art &amp; Merch</h4>
 <p class='uk-margin-remove'>Koleksi merchandise eksklusif.<br/><a href='/p/sitemap.html'>Read more</a></p>
@@ -3136,21 +3136,21 @@ color:#0943bb;
  
 		<ul class='imgshow uk-slideshow-items'>
 			<li>
-				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4AucS0lbbIWN6ZdEa7QOd2vh8G0KvPZyz9ec0dujhABSMBVluUGBEj0rAkZcBOLxJA1akXa0xcttRijRjr2fzjBh6Iy32xomnlvjSkrwf8aLzN3UtDPY5HRMQC6QFWpGZLC_QSk82DW1k5jNEmhT7k6Zbz9BJGLg8fDvsPr-4oYYyIDHRqajqw_y54Q/w1800/ahyarra_desc%20(4).png'/>
+				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcuHl0TtMTxCR_ihZaqsKXS8DpcGcBzvgms-ey1kQX3hz4Lhbf6ftpZjGG5_J7ME-M3CzfxKke2MzQepckMIel-9DhniG_KgP5rT5pj8vByv3Ge6MIHRGVXwbx9sNMS7yxKm8WsFwYsDaNOkS4qLQWqq3GtFuH2WdJW73qewMamPwZByjvYzPD4XqREA/s16000/blog_ahyarra_01.webp'/>
 			<div class='uk-overlay uk-position-bottom-center uk-padding uk-light' data-uk-slideshow-parallax='opacity: 1,1,0;' style='background: linear-gradient(0deg, rgb(242 242 242), transparent); width:100%; padding: 60px 0 !important; opacity: 1;'>
 <h4 class='uk-margin-remove'>Tutorial</h4>
 <p class='uk-margin-remove'>Contekan biar cepat jago.<br/><a href='/p/sitemap.html'>Read more</a></p>
 </div>
 			</li>
 			<li>
-				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsbMnp0UoqtjuVR-0MBXfMA-fjGbIW0zdmjbav8lisFz-JAG6kOpl7tzMl5mSk2A4EO33fBriVuVpzgFi7gCqYzIPaqUapc1t5KkNo-T6YZL6XL2_NNT2A4NyOH2ylJzEm8YsWRdpc1LNjUJRgniQjy_Nd3ZSEN9KhNE9A5GzR_xjNKERqcU555bn4dA/w1800/ahyarra_desc%20(3).png'/>
+				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzVEH9295arGzEyQOJ-JoNjffIv-MxL_9rqnyarT_RkIDJzKG-zYsz7j8TXm3hdOWp08FV17T8cuej5PAM9N9J_9_TOnmBlTqXwKIaeT64IrQL2x3HfTZbaEbElCU3uPcMlmkQ-_OCZ3wIUXNKFVhdCgm4f4bs1lJyeAmWHfrMUJi1UOokstVeBvfLRg/s16000/blog_ahyarra_02.webp'/>
 			<div class='uk-overlay uk-position-bottom-center uk-padding uk-light' data-uk-slideshow-parallax='opacity: 1,1,0;' style='background: linear-gradient(0deg, rgb(242 242 242), transparent); width:100%; padding: 60px 0 !important; opacity: 1;'>
 <h4 class='uk-margin-remove'>Event &amp; Workshop</h4>
 <p class='uk-margin-remove'>Upgrade skill, ketemu orang baru.<br/><a href='/p/sitemap.html'>Read more</a></p>
 </div>
 			</li>
 			<li>
-				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZBMdpE9S6jKNMtwPIabTWjch_L1KOgr0j1NllxLxmMYyRYco1drh7N-olIjAT5L1JigfJLhpQVkiHGFTvmNYI_YNJ-qhy-ltpvyYb0BeMnzAVCOi3E7qExpz9ehUswQ36RuAZJF-rtGTmr_HxlSJWhrK6S9DcLxMPA1CbIj5NnBtv0HI4eN4tcFSvsw/w1800/ahyarra_desc%20(2).png'/>
+				<img style='opacity:1; filter: contrast(0.5);' alt='' data-uk-cover='' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhr5yo5l10-thSRYcjEYr2ZyS_OwYlrJ6CnqJLOCaxBoirc8rFUNnqHOLAE1VftWm5k8pDF7GZMZ4QUGtFvW94B76ifBLSOHjbwU7y5sC4FRrGyzH09XsoQo7QEYNuxTXyY9ODJBCiaQXM4uqp2IJNBg9S58_EJCLsxY6I8-KCZ2wEkBchtEtPP-Z8XTg/s16000/blog_ahyarra_03.webp'/>
 			<div class='uk-overlay uk-position-bottom-center uk-padding uk-light' data-uk-slideshow-parallax='opacity: 1,1,0;' style='background: linear-gradient(0deg, rgb(242 242 242), transparent); width:100%; padding: 60px 0 !important; opacity: 1;'>
 <h4 class='uk-margin-remove'>Blog Journal</h4>
 <p class='uk-margin-remove'>Tulisan random, semoga berfaedah.<br/><a href='/p/sitemap.html'>Read more</a></p>

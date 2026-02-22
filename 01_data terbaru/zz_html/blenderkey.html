@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blender Cheat Sheet - Full Reference</title>
+    <style>
+        /* --- CSS UTAMA --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px; /* Ruang untuk tombol sticky */
+            line-height: 1.4;
+        }
+
+        /* Tombol Translate Sticky */
+        .controls {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .btn {
+            padding: 6px 16px;
+            border: 2px solid #ced4da;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+            color: #555;
+        }
+
+        .btn:hover { border-color: #d63384; color: #d63384; }
+        .btn.active { background-color: #d63384; border-color: #d63384; color: white; }
+
+        /* Layout Kolom Masonry */
+        .h2-wrap.cols-2 {
+            column-count: 2;
+            column-gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) { .h2-wrap.cols-2 { column-count: 1; } }
+
+        .section-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            break-inside: avoid;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 10px 16px;
+            font-size: 1.1em;
+            background-color: #f1f3f5;
+            color: #343a40;
+            border-bottom: 1px solid #e9ecef;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+        tr { border-bottom: 1px solid #f8f9fa; }
+        tr:last-child { border-bottom: none; }
+        tr:hover { background-color: #fff0f6; } /* Highlight pink saat hover */
+
+        td { padding: 6px 16px; vertical-align: top; }
+
+        /* Kolom Shortcut */
+        td:first-child {
+            width: 25%;
+            font-weight: 700;
+            color: #e64980;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            white-space: nowrap;
+        }
+        
+        /* Kolom Deskripsi */
+        td:last-child { color: #495057; }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <span><b>Bahasa:</b></span>
+        <button class="btn" onclick="setLanguage('en')" id="btn-en">English</button>
+        <button class="btn active" onclick="setLanguage('id')" id="btn-id">Indonesia</button>
+    </div>
+
+    <div class="h2-wrap cols-2">
+
+        <div class="section-card">
+            <h2>Universal</h2>
+            <table>
+                <tr><td>Esc</td><td>Cancels Blender functions without changes</td></tr>
+                <tr><td>Space</td><td>Open the toolbox</td></tr>
+                <tr><td>Tab</td><td>Start or quit edit mode</td></tr>
+                <tr><td>F1</td><td>Loads a Blender file</td></tr>
+                <tr><td>Shift F1</td><td>Appends parts from other files</td></tr>
+                <tr><td>F2</td><td>Writes a Blender file</td></tr>
+                <tr><td>Shift F2</td><td>Exports the scene as a DXF file</td></tr>
+                <tr><td>Ctrl F2</td><td>Exports the scene as a VRML1 file</td></tr>
+                <tr><td>F3</td><td>Writes a picture (if rendered)</td></tr>
+                <tr><td>Ctrl F3</td><td>Saves a screen dump of the active window</td></tr>
+                <tr><td>Ctrl Shift F3</td><td>Saves a screen dump of the whole Blender screen</td></tr>
+                <tr><td>F4</td><td>Displays the logic context</td></tr>
+                <tr><td>F5</td><td>Displays the shading context</td></tr>
+                <tr><td>F6</td><td>Displays the shading context and texture sub-context</td></tr>
+                <tr><td>F7</td><td>Displays the object context</td></tr>
+                <tr><td>F8</td><td>Displays the shading context and world sub-context</td></tr>
+                <tr><td>F9</td><td>Displays the editing context</td></tr>
+                <tr><td>F10</td><td>Displays the scene context</td></tr>
+                <tr><td>F11</td><td>Hides or shows the render window</td></tr>
+                <tr><td>F12</td><td>Starts the rendering from the active camera</td></tr>
+                <tr><td>Left</td><td>Go to the previous frame</td></tr>
+                <tr><td>Shift Left</td><td>Go to the first frame</td></tr>
+                <tr><td>Right</td><td>Go to the next frame</td></tr>
+                <tr><td>Shift Right</td><td>Go to the last frame</td></tr>
+                <tr><td>Up</td><td>Go forward 10 frames</td></tr>
+                <tr><td>Down</td><td>Go back 10 frames</td></tr>
+                <tr><td>Alt A</td><td>Change the current Blender window to animation playback mode</td></tr>
+                <tr><td>Alt Shift A</td><td>Change the current window and all 3D windows to animation playback mode</td></tr>
+                <tr><td>I</td><td>Insert key menu</td></tr>
+                <tr><td>J</td><td>Toggle the render buffers</td></tr>
+                <tr><td>Ctrl O</td><td>Opens the last saved file</td></tr>
+                <tr><td>Q</td><td>Quit Blender</td></tr>
+                <tr><td>Ctrl Alt T</td><td>Timer menu (drawing speed info)</td></tr>
+                <tr><td>Ctrl U</td><td>Save user defaults</td></tr>
+                <tr><td>Ctrl W</td><td>Write file without opening a file window</td></tr>
+                <tr><td>Alt W</td><td>Write videoscape file</td></tr>
+                <tr><td>Ctrl X</td><td>Erase everything except the render buffer</td></tr>
+                <tr><td>Ctrl Y</td><td>Redo</td></tr>
+                <tr><td>Ctrl Z</td><td>Undo</td></tr>
+                <tr><td>Ctrl Shift Z</td><td>Redo</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Object Mode</h2>
+            <table>
+                <tr><td>Home</td><td>All objects in the visible layer are displayed completely</td></tr>
+                <tr><td>PgUp</td><td>Select the next object key</td></tr>
+                <tr><td>Shift PgUp</td><td>Add to selection the next object key</td></tr>
+                <tr><td>PgDn</td><td>Select the previous object key</td></tr>
+                <tr><td>Shift PgDn</td><td>Adds to selection the previous object key</td></tr>
+                <tr><td>`</td><td>Select all layers</td></tr>
+                <tr><td>Shift `</td><td>Revert to the previous layer setting</td></tr>
+                <tr><td>Tab</td><td>Start or stop edit mode</td></tr>
+                <tr><td>A</td><td>Selects or deselects all</td></tr>
+                <tr><td>Ctrl A</td><td>Apply size and rotation</td></tr>
+                <tr><td>Ctrl Shift A</td><td>Menu for creating duplicated objects</td></tr>
+                <tr><td>Shift A</td><td>Brings up the add menu</td></tr>
+                <tr><td>B</td><td>Border select</td></tr>
+                <tr><td>Shift B</td><td>Render border</td></tr>
+                <tr><td>C</td><td>Center view (3D cursor becomes new center)</td></tr>
+                <tr><td>Alt C</td><td>Convert menu</td></tr>
+                <tr><td>Ctrl C</td><td>Copy menu</td></tr>
+                <tr><td>Shift C</td><td>Center zero view (All objects displayed)</td></tr>
+                <tr><td>D</td><td>Display draw mode menu</td></tr>
+                <tr><td>Shift D</td><td>Add duplicate</td></tr>
+                <tr><td>Alt D</td><td>Add linked duplicate</td></tr>
+                <tr><td>Ctrl D</td><td>Draw the texture image as wire</td></tr>
+                <tr><td>Alt E</td><td>Start or stop edit mode</td></tr>
+                <tr><td>F</td><td>Toggles face select mode (if mesh)</td></tr>
+                <tr><td>Ctrl F</td><td>Sort faces</td></tr>
+                <tr><td>G</td><td>Grab mode (Translation)</td></tr>
+                <tr><td>Alt G</td><td>Clears translations</td></tr>
+                <tr><td>Shift G</td><td>Group selection</td></tr>
+                <tr><td>I</td><td>Insert object key</td></tr>
+                <tr><td>Ctrl J</td><td>Join objects</td></tr>
+                <tr><td>K</td><td>Show keys (draw key option on)</td></tr>
+                <tr><td>Shift K</td><td>Display popup menu for showing/selecting keys</td></tr>
+                <tr><td>L</td><td>Makes selected object local</td></tr>
+                <tr><td>Ctrl L</td><td>Link selected</td></tr>
+                <tr><td>Shift L</td><td>Select linked</td></tr>
+                <tr><td>M</td><td>Move selected objects to another layer</td></tr>
+                <tr><td>Ctrl M</td><td>Mirror menu</td></tr>
+                <tr><td>N</td><td>Number panel (Location/Rotation/Scaling)</td></tr>
+                <tr><td>Alt O</td><td>Clear origin</td></tr>
+                <tr><td>Shift O</td><td>Toggles subsurf (if mesh)</td></tr>
+                <tr><td>Ctrl P</td><td>Make selected objects the children of active object</td></tr>
+                <tr><td>Alt P</td><td>Clears parent relation</td></tr>
+                <tr><td>R</td><td>Rotate mode</td></tr>
+                <tr><td>Alt R</td><td>Clears rotation</td></tr>
+                <tr><td>S</td><td>Size mode or scaling mode</td></tr>
+                <tr><td>Alt S</td><td>Clears size</td></tr>
+                <tr><td>Shift S</td><td>Opens the snap menu</td></tr>
+                <tr><td>T</td><td>Texture space mode</td></tr>
+                <tr><td>Ctrl T</td><td>Makes selected objects track the active object</td></tr>
+                <tr><td>Alt T</td><td>Clears old style track</td></tr>
+                <tr><td>U</td><td>Makes object single user</td></tr>
+                <tr><td>V</td><td>Switches in and out of vertex paint mode</td></tr>
+                <tr><td>Alt V</td><td>Object image aspect</td></tr>
+                <tr><td>W</td><td>Opens the object booleans menu</td></tr>
+                <tr><td>X</td><td>Deletes selected objects</td></tr>
+                <tr><td>Z</td><td>Toggles solid mode on or off</td></tr>
+                <tr><td>Shift Z</td><td>Toggles shaded mode on or off</td></tr>
+                <tr><td>Alt Z</td><td>Toggles textured mode on or off</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Edit Mode - General</h2>
+            <table>
+                <tr><td>Tab</td><td>Start or stop edit mode</td></tr>
+                <tr><td>Alt E</td><td>Start or stop edit mode (alternative)</td></tr>
+                <tr><td>Ctrl Tab</td><td>Switches between vertex, edge, and face select modes</td></tr>
+                <tr><td>A</td><td>Select or unselect all</td></tr>
+                <tr><td>B</td><td>Border select</td></tr>
+                <tr><td>B B</td><td>Circle select</td></tr>
+                <tr><td>Ctrl H</td><td>Creates a hook object (with vertices selected)</td></tr>
+                <tr><td>N</td><td>Number panel (simpler than object mode)</td></tr>
+                <tr><td>O</td><td>Switch in and out of proportional editing</td></tr>
+                <tr><td>Shift O</td><td>Toggles between smooth and sharp proportional editing</td></tr>
+                <tr><td>P</td><td>Separate (new object from selection)</td></tr>
+                <tr><td>Ctrl P</td><td>Make vertex parent</td></tr>
+                <tr><td>Ctrl S</td><td>Shear</td></tr>
+                <tr><td>U</td><td>Undo</td></tr>
+                <tr><td>W</td><td>Displays specials popup menu</td></tr>
+                <tr><td>Shift W</td><td>Warp</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Edit Mode - Mesh</h2>
+            <table>
+                <tr><td>Ctrl +</td><td>Adds to selection all connected vertices</td></tr>
+                <tr><td>Ctrl -</td><td>Removes from selection outer ring</td></tr>
+                <tr><td>C</td><td>Toggles curve cyclic mode (if deformation)</td></tr>
+                <tr><td>E</td><td>Extrude selected</td></tr>
+                <tr><td>Shift E</td><td>Crease subsurf edge</td></tr>
+                <tr><td>Ctrl E</td><td>Mark LSCM seam</td></tr>
+                <tr><td>F</td><td>Make edge or face</td></tr>
+                <tr><td>Shift F</td><td>Fill selected (Triangular faces)</td></tr>
+                <tr><td>Alt F</td><td>Beauty fill</td></tr>
+                <tr><td>Ctrl F</td><td>Flip faces</td></tr>
+                <tr><td>H</td><td>Hide selected</td></tr>
+                <tr><td>Shift H</td><td>Hide not selected</td></tr>
+                <tr><td>Alt H</td><td>Reveal (Un-hide)</td></tr>
+                <tr><td>Alt J</td><td>Join faces (Triangles to Quads)</td></tr>
+                <tr><td>K</td><td>Knife tool menu</td></tr>
+                <tr><td>L</td><td>Select linked</td></tr>
+                <tr><td>Shift L</td><td>Deselect linked</td></tr>
+                <tr><td>Ctrl L</td><td>Select linked selected</td></tr>
+                <tr><td>M</td><td>Mirror</td></tr>
+                <tr><td>Alt M</td><td>Merges selected vertices</td></tr>
+                <tr><td>Ctrl N</td><td>Calculate normals outside</td></tr>
+                <tr><td>Ctrl Shift N</td><td>Calculate normals inside</td></tr>
+                <tr><td>Alt S</td><td>Scales each vertex along normal</td></tr>
+                <tr><td>Ctrl T</td><td>Make triangles</td></tr>
+                <tr><td>U</td><td>Undo</td></tr>
+                <tr><td>Shift U</td><td>Redo</td></tr>
+                <tr><td>Alt U</td><td>Undo menu</td></tr>
+                <tr><td>W</td><td>Special menu</td></tr>
+                <tr><td>X</td><td>Erase selected</td></tr>
+                <tr><td>Y</td><td>Split</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Edit Mode - Curve</h2>
+            <table>
+                <tr><td>C</td><td>Set the selected curves to cyclic</td></tr>
+                <tr><td>E</td><td>Extrude curve</td></tr>
+                <tr><td>F</td><td>Add segment</td></tr>
+                <tr><td>H</td><td>Toggle handle align or free</td></tr>
+                <tr><td>Shift H</td><td>Set handle to auto</td></tr>
+                <tr><td>Ctrl H</td><td>Calculate handles</td></tr>
+                <tr><td>L</td><td>Select linked</td></tr>
+                <tr><td>Shift L</td><td>Deselect linked</td></tr>
+                <tr><td>M</td><td>Mirror selected control points</td></tr>
+                <tr><td>T</td><td>Tilt mode</td></tr>
+                <tr><td>Alt T</td><td>Clear tilt</td></tr>
+                <tr><td>V</td><td>Vector handle</td></tr>
+                <tr><td>W</td><td>Special menu for curves</td></tr>
+                <tr><td>X</td><td>Erase selected</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Edit Mode - Surface</h2>
+            <table>
+                <tr><td>C</td><td>Toggle cyclic menu</td></tr>
+                <tr><td>E</td><td>Extrude selected</td></tr>
+                <tr><td>F</td><td>Add segment</td></tr>
+                <tr><td>L</td><td>Select linked</td></tr>
+                <tr><td>Shift L</td><td>Deselect linked</td></tr>
+                <tr><td>M</td><td>Mirror selected control points</td></tr>
+                <tr><td>Shift R</td><td>Select row</td></tr>
+                <tr><td>W</td><td>Special menu for surfaces</td></tr>
+                <tr><td>X</td><td>Erase selected</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Edit Mode - Font</h2>
+            <table>
+                <tr><td>Right</td><td>Move text cursor one position forward</td></tr>
+                <tr><td>Shift Right</td><td>Move text cursor to the end of the line</td></tr>
+                <tr><td>Left</td><td>Move text cursor one position backwards</td></tr>
+                <tr><td>Shift Left</td><td>Move text cursor to the start of the line</td></tr>
+                <tr><td>Down</td><td>Move text cursor one line forward</td></tr>
+                <tr><td>Shift Down</td><td>Move text cursor to the end of the text</td></tr>
+                <tr><td>Up</td><td>Move text cursor one line back</td></tr>
+                <tr><td>Shift Up</td><td>Move text cursor to the beginning of the text</td></tr>
+                <tr><td>Alt U</td><td>Reload original data</td></tr>
+                <tr><td>Alt V</td><td>Paste text</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Vertex Paint</h2>
+            <table>
+                <tr><td>Shift K</td><td>All vertex colors are erased (changed to draw color)</td></tr>
+                <tr><td>U</td><td>Undo</td></tr>
+                <tr><td>W</td><td>Shared vertexcol (Blend colors)</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>UV Editor</h2>
+            <table>
+                <tr><td>E</td><td>LSCM unwrapping</td></tr>
+                <tr><td>P</td><td>Pin selected vertices</td></tr>
+                <tr><td>Alt P</td><td>Un-pin selected vertices</td></tr>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>Face Select</h2>
+            <table>
+                <tr><td>Tab</td><td>Switches to edit mode</td></tr>
+                <tr><td>F</td><td>Merge multiple selected faces into one FGon</td></tr>
+                <tr><td>L</td><td>Select linked UVs</td></tr>
+                <tr><td>R</td><td>Rotate UV coordinates or vertex col</td></tr>
+                <tr><td>U</td><td>Calls the UV Calculation menu</td></tr>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        const translations = {
+            // UNIVERSAL
+            "Cancels Blender functions without changes": "Batalkan fungsi tanpa perubahan",
+            "Open the toolbox": "Buka Toolbox / Pencarian",
+            "Start or quit edit mode": "Masuk/Keluar Edit Mode",
+            "Loads a Blender file": "Buka file Blender",
+            "Appends parts from other files": "Ambil (Append) dari file lain",
+            "Writes a Blender file": "Simpan file Blender",
+            "Exports the scene as a DXF file": "Ekspor scene sebagai DXF",
+            "Exports the scene as a VRML1 file": "Ekspor scene sebagai VRML1",
+            "Writes a picture (if rendered)": "Simpan gambar (jika sudah dirender)",
+            "Saves a screen dump of the active window": "Screenshot jendela aktif",
+            "Saves a screen dump of the whole Blender screen": "Screenshot seluruh layar",
+            "Displays the logic context": "Tampilkan Logic Context",
+            "Displays the shading context": "Tampilkan Shading Context",
+            "Displays the shading context and texture sub-context": "Tampilkan Shading & Texture Context",
+            "Displays the object context": "Tampilkan Object Context",
+            "Displays the shading context and world sub-context": "Tampilkan Shading & World Context",
+            "Displays the editing context": "Tampilkan Editing Context",
+            "Displays the scene context": "Tampilkan Scene Context",
+            "Hides or shows the render window": "Sembunyikan/Tampilkan jendela render",
+            "Starts the rendering from the active camera": "Mulai render dari kamera aktif",
+            "Go to the previous frame": "Ke frame sebelumnya",
+            "Go to the first frame": "Ke frame awal",
+            "Go to the next frame": "Ke frame selanjutnya",
+            "Go to the last frame": "Ke frame akhir",
+            "Go forward 10 frames": "Maju 10 frame",
+            "Go back 10 frames": "Mundur 10 frame",
+            "Change the current Blender window to animation playback mode": "Putar animasi di jendela aktif",
+            "Change the current window and all 3D windows to animation playback mode": "Putar animasi di semua jendela 3D",
+            "Insert key menu": "Menu Insert Keyframe",
+            "Toggle the render buffers": "Toggle buffer render",
+            "Opens the last saved file": "Buka file terakhir disimpan",
+            "Quit Blender": "Keluar dari Blender",
+            "Timer menu (drawing speed info)": "Menu Timer (info kecepatan gambar)",
+            "Save user defaults": "Simpan pengaturan default pengguna",
+            "Write file without opening a file window": "Simpan file langsung (tanpa dialog)",
+            "Write videoscape file": "Tulis file videoscape",
+            "Erase everything except the render buffer": "Hapus semua kecuali buffer render (New File)",
+            "Redo": "Ulangi (Redo)",
+            "Undo": "Batalkan (Undo)",
+
+            // OBJECT MODE
+            "All objects in the visible layer are displayed completely": "Tampilkan semua objek di layer (Center View)",
+            "Select the next object key": "Pilih kunci objek berikutnya",
+            "Add to selection the next object key": "Tambah seleksi kunci objek berikutnya",
+            "Select the previous object key": "Pilih kunci objek sebelumnya",
+            "Adds to selection the previous object key": "Tambah seleksi kunci objek sebelumnya",
+            "Select all layers": "Pilih semua layer",
+            "Revert to the previous layer setting": "Kembali ke setting layer sebelumnya",
+            "Start or stop edit mode": "Mulai/Stop Edit Mode",
+            "Selects or deselects all": "Pilih/Lepas semua",
+            "Apply size and rotation": "Terapkan (Apply) ukuran dan rotasi",
+            "Menu for creating duplicated objects": "Menu duplikasi objek otomatis",
+            "Brings up the add menu": "Buka menu tambah objek (Add)",
+            "Border select": "Seleksi kotak (Border)",
+            "Render border": "Render bagian kotak saja",
+            "Center view (3D cursor becomes new center)": "Pusatkan pandangan ke kursor 3D",
+            "Convert menu": "Menu konversi (Convert)",
+            "Copy menu": "Menu salin (Copy)",
+            "Center zero view (All objects displayed)": "Reset pandangan & kursor ke 0",
+            "Display draw mode menu": "Menu mode tampilan (Draw)",
+            "Add duplicate": "Duplikat objek",
+            "Add linked duplicate": "Duplikat terhubung (Linked)",
+            "Draw the texture image as wire": "Gambar tekstur sebagai wire",
+            "Toggles face select mode (if mesh)": "Toggle mode pilih sisi (jika mesh)",
+            "Sort faces": "Urutkan sisi (Sort Faces)",
+            "Grab mode (Translation)": "Geser / Pindahkan (Grab)",
+            "Clears translations": "Reset posisi",
+            "Group selection": "Seleksi Grup",
+            "Insert object key": "Insert Keyframe Objek",
+            "Join objects": "Gabungkan objek (Join)",
+            "Show keys (draw key option on)": "Tampilkan Keys",
+            "Display popup menu for showing/selecting keys": "Popup menu seleksi Keys",
+            "Makes selected object local": "Jadikan objek lokal",
+            "Link selected": "Link data terpilih",
+            "Select linked": "Pilih yang terhubung",
+            "Move selected objects to another layer": "Pindahkan ke layer lain",
+            "Mirror menu": "Menu cermin (Mirror)",
+            "Number panel (Location/Rotation/Scaling)": "Panel Properti (Transform)",
+            "Clear origin": "Hapus origin",
+            "Toggles subsurf (if mesh)": "Toggle Subsurf",
+            "Make selected objects the children of active object": "Jadikan Parent (Induk)",
+            "Clears parent relation": "Hapus hubungan Parent",
+            "Rotate mode": "Mode Putar (Rotate)",
+            "Clears rotation": "Reset Rotasi",
+            "Size mode or scaling mode": "Mode Skala (Size)",
+            "Clears size": "Reset Skala",
+            "Opens the snap menu": "Buka menu Snap (Tempel)",
+            "Texture space mode": "Mode Texture Space",
+            "Makes selected objects track the active object": "Objek terpilih mengikuti (Track) aktif",
+            "Clears old style track": "Hapus Track lama",
+            "Makes object single user": "Jadikan Single User",
+            "Switches in and out of vertex paint mode": "Masuk/Keluar Vertex Paint",
+            "Object image aspect": "Aspek rasio gambar objek",
+            "Opens the object booleans menu": "Buka menu Boolean",
+            "Deletes selected objects": "Hapus objek terpilih",
+            "Toggles solid mode on or off": "Toggle mode Solid",
+            "Toggles shaded mode on or off": "Toggle mode Shaded",
+            "Toggles textured mode on or off": "Toggle mode Textured",
+
+            // EDIT MODE - GENERAL
+            "Switches between vertex, edge, and face select modes": "Ganti mode pilih Titik/Garis/Sisi",
+            "Select or unselect all": "Pilih/Lepas semua",
+            "Circle select": "Seleksi melingkar",
+            "Creates a hook object (with vertices selected)": "Buat Hook Object",
+            "Number panel (simpler than object mode)": "Panel angka (Properties)",
+            "Switch in and out of proportional editing": "Toggle Edit Proporsional",
+            "Toggles between smooth and sharp proportional editing": "Ganti mode Proporsional (Smooth/Sharp)",
+            "Separate (new object from selection)": "Pisahkan jadi objek baru (Separate)",
+            "Make vertex parent": "Jadikan Vertex Parent",
+            "Shear": "Miringkan (Shear)",
+            "Displays specials popup menu": "Menu Spesial",
+            "Warp": "Melengkungkan (Warp)",
+
+            // EDIT MODE - MESH
+            "Adds to selection all connected vertices": "Perluas seleksi ke titik terhubung",
+            "Removes from selection outer ring": "Kurangi seleksi bagian luar",
+            "Toggles curve cyclic mode (if deformation)": "Toggle mode siklus kurva",
+            "Extrude selected": "Extrude (Tarik)",
+            "Crease subsurf edge": "Pertajam tepi Subsurf (Crease)",
+            "Mark LSCM seam": "Tandai jahitan (Seam) LSCM",
+            "Make edge or face": "Buat garis/sisi (Fill)",
+            "Fill selected (Triangular faces)": "Isi segitiga (Fill)",
+            "Beauty fill": "Isi rapi (Beauty Fill)",
+            "Flip faces": "Balik arah sisi (Flip Normals)",
+            "Hide selected": "Sembunyikan terpilih",
+            "Hide not selected": "Sembunyikan yang tidak dipilih",
+            "Reveal (Un-hide)": "Tampilkan yang tersembunyi",
+            "Join faces (Triangles to Quads)": "Gabung segitiga jadi kotak (Tris to Quads)",
+            "Knife tool menu": "Menu alat potong (Knife)",
+            "Deselect linked": "Lepas seleksi terhubung",
+            "Select linked selected": "Pilih terhubung yang terpilih",
+            "Merges selected vertices": "Gabungkan titik (Merge)",
+            "Calculate normals outside": "Hitung normal ke luar",
+            "Calculate normals inside": "Hitung normal ke dalam",
+            "Scales each vertex along normal": "Skala titik sesuai arah normal",
+            "Make triangles": "Ubah jadi segitiga",
+            "Undo menu": "Menu Undo",
+            "Special menu": "Menu Spesial",
+            "Erase selected": "Hapus terpilih",
+            "Split": "Pisahkan (Split)",
+
+            // EDIT MODE - CURVE
+            "Set the selected curves to cyclic": "Ubah kurva jadi tertutup (Cyclic)",
+            "Extrude curve": "Extrude kurva",
+            "Add segment": "Tambah segmen",
+            "Toggle handle align or free": "Ganti mode Handle (Align/Free)",
+            "Set handle to auto": "Set Handle ke Auto",
+            "Calculate handles": "Hitung ulang Handle",
+            "Mirror selected control points": "Cerminkan titik kontrol",
+            "Tilt mode": "Mode miring (Tilt)",
+            "Clear tilt": "Hapus kemiringan",
+            "Vector handle": "Handle Vektor",
+            "Special menu for curves": "Menu spesial kurva",
+
+            // EDIT MODE - SURFACE
+            "Toggle cyclic menu": "Toggle menu Cyclic",
+            "Select row": "Pilih baris",
+            "Special menu for surfaces": "Menu spesial Surface",
+
+            // EDIT MODE - FONT
+            "Move text cursor one position forward": "Kursor teks maju satu",
+            "Move text cursor to the end of the line": "Kursor ke akhir baris",
+            "Move text cursor one position backwards": "Kursor teks mundur satu",
+            "Move text cursor to the start of the line": "Kursor ke awal baris",
+            "Move text cursor one line forward": "Kursor turun satu baris",
+            "Move text cursor to the end of the text": "Kursor ke akhir teks",
+            "Move text cursor one line back": "Kursor naik satu baris",
+            "Move text cursor to the beginning of the text": "Kursor ke awal teks",
+            "Reload original data": "Muat ulang data asli",
+            "Paste text": "Tempel teks (Paste)",
+
+            // VERTEX PAINT
+            "All vertex colors are erased (changed to draw color)": "Hapus semua warna vertex",
+            "Shared vertexcol (Blend colors)": "Blend warna vertex yang sama",
+
+            // UV EDITOR
+            "LSCM unwrapping": "LSCM Unwrap",
+            "Pin selected vertices": "Kunci (Pin) titik terpilih",
+            "Un-pin selected vertices": "Lepas kunci (Un-pin)",
+
+            // FACE SELECT
+            "Switches to edit mode": "Masuk Edit Mode",
+            "Merge multiple selected faces into one FGon": "Gabung sisi jadi FGon",
+            "Select linked UVs": "Pilih UV terhubung",
+            "Rotate UV coordinates or vertex col": "Putar koordinat UV",
+            "Calls the UV Calculation menu": "Buka menu kalkulasi UV"
+        };
+
+        // --- LOGIC TRANSLATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const tables = document.querySelectorAll('table tr');
+            tables.forEach(row => {
+                const descCell = row.cells[1];
+                if (descCell) {
+                    const originalText = descCell.innerText.trim();
+                    descCell.setAttribute('data-en', originalText);
+                }
+            });
+            // Default Start
+            setLanguage('id');
+        });
+
+        function setLanguage(lang) {
+            // Update UI Tombol
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Update Teks
+            document.querySelectorAll('table tr').forEach(row => {
+                const descCell = row.cells[1];
+                if (!descCell) return;
+                
+                const engText = descCell.getAttribute('data-en');
+                
+                if (lang === 'en') {
+                    descCell.innerText = engText;
+                } else {
+                    // Cek kamus, jika tidak ada, gunakan teks asli
+                    if (translations[engText]) {
+                        descCell.innerText = translations[engText];
+                    } else {
+                        // Fallback log jika ada yang terlewat
+                        console.warn('Missing translation:', engText);
+                        descCell.innerText = engText;
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Emoji Index</title>
+    <style>
+        :root {
+            --bg: #F5F5F7;
+            --card: #FFFFFF;
+            --text: #1D1D1F;
+            --subtext: #86868B;
+            --border: #E5E5EA;
+            --hover-bg: #F2F2F7;
+            --accent-figma: #10B981;
+            --accent-github: #007AFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 20px; }
+        h1 { margin: 0 0 4px 0; font-size: 20px; }
+        .status { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 500; }
+        .status.loading { background: #fff3cd; color: #856404; }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+
+        /* Controls */
+        .controls {
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 8px;
+        }
+
+        input#search {
+            flex: 2;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+        }
+        input#search:focus { border-color: #007AFF; }
+
+        .mode-switch { flex: 1; display: flex; gap: 4px; background: #EDEEF0; padding: 2px; border-radius: 8px; }
+        .btn-mode {
+            flex: 1; border: none; background: transparent; border-radius: 6px;
+            cursor: pointer; font-size: 12px; font-weight: 600; color: #666;
+            transition: 0.2s;
+        }
+        .btn-mode.active { background: white; color: #000; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+        /* Content */
+        .container { width: 100%; max-width: 1000px; }
+        .category-section { margin-bottom: 30px; }
+        .category-title {
+            font-size: 15px; font-weight: 600; color: #333;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px; margin-bottom: 12px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 8px;
+        }
+
+        /* Card */
+        .card {
+            background: var(--card);
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.1s;
+            user-select: none;
+        }
+        .card:hover { background-color: var(--hover-bg); transform: translateX(2px); }
+        .card:active { transform: scale(0.98); }
+
+        .emoji-visual {
+            font-size: 14px;
+            min-width: 20px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .emoji-code {
+            font-family: 'Menlo', monospace;
+            font-size: 12px;
+            color: #444;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toast {
+            visibility: hidden; background: #333; color: white;
+            padding: 8px 16px; border-radius: 20px; font-size: 12px;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            opacity: 0; transition: 0.3s; z-index: 1000;
+        }
+        #toast.show { visibility: visible; opacity: 1; bottom: 40px; }
+    </style>
+</head>
+<body class="mode-github">
+
+    <div class="header">
+        <h1>☁️ Live Emoji Sheet</h1>
+        <div id="status" class="status loading">Connecting...</div>
+    </div>
+
+    <div class="controls">
+        <input type="text" id="search" placeholder="Search (e.g. smile, :heart)..." onkeyup="handleSearch()">
+        <div class="mode-switch">
+            <button class="btn-mode" data-mode="figma" onclick="setMode('figma')">Figma</button>
+            <button class="btn-mode active" data-mode="github" onclick="setMode('github')">GitHub</button>
+        </div>
+    </div>
+
+    <div class="container" id="app"></div>
+    <div id="toast">Copied!</div>
+
+<script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQJH1uqs61TYdOqP6dPK4KtY7IiLjltpzTqzdAk5IsI_ejcnotUNlV-mbByRnCCgf8Q297IVQBNYFKB/pub?output=csv';
+    const PROXY_URL = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(SHEET_URL);
+
+    let fullData = {};
+    let currentMode = 'github';
+
+    async function fetchData() {
+        const statusEl = document.getElementById('status');
+        try {
+            const response = await fetch(PROXY_URL);
+            if (!response.ok) throw new Error("Network Error");
+            const text = await response.text();
+            
+            parseCSVCorrectly(text);
+            
+            statusEl.textContent = "● Synced";
+            statusEl.className = "status success";
+            render();
+        } catch (error) {
+            console.error(error);
+            statusEl.textContent = "Error Loading Data";
+            statusEl.className = "status error";
+        }
+    }
+
+    function parseCSVCorrectly(text) {
+        fullData = {};
+        const lines = text.split(/\r?\n/);
+        if (lines.length < 3) return;
+
+        // Header Parsing
+        const categoriesRow = lines[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+        const categoryMap = {};
+
+        categoriesRow.forEach((cell, index) => {
+            const cleanName = cell.replace(/^"|"$/g, '').trim();
+            if (cleanName) {
+                categoryMap[index] = cleanName;
+                fullData[cleanName] = [];
+            }
+        });
+
+        // Data Parsing
+        for (let i = 2; i < lines.length; i++) {
+            const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            
+            for (let colIndex in categoryMap) {
+                colIndex = parseInt(colIndex);
+                if (row[colIndex] !== undefined && row[colIndex+1] !== undefined) {
+                    const emoji = row[colIndex].replace(/^"|"$/g, '').trim();
+                    let shortcut = row[colIndex+1].replace(/^"|"$/g, '').trim();
+
+                    if (emoji && shortcut) {
+                        shortcut = shortcut.replace(/:/g, ''); 
+                        const catName = categoryMap[colIndex];
+                        fullData[catName].push({ v: emoji, c: shortcut });
+                    }
+                }
+            }
+        }
+    }
+
+    function setMode(mode) {
+        currentMode = mode;
+        document.querySelectorAll('.btn-mode').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
+        render(document.getElementById('search').value);
+    }
+
+    function render(filter = "") {
+        const app = document.getElementById('app');
+        app.innerHTML = "";
+        const lowerFilter = filter.toLowerCase();
+        let hasResult = false;
+
+        for (const [category, items] of Object.entries(fullData)) {
+            // Prepare data for rendering & searching
+            const processed = items.map(item => ({
+                ...item,
+                display: currentMode === 'github' ? `:${item.c}:` : `:${item.c}`
+            }));
+
+            // Filter Logic yang DIPERBAIKI:
+            // Mencari di 'display' (yang ada titik duanya) ATAU di 'c' (bersih) ATAU di visual
+            const filtered = processed.filter(i => 
+                i.display.toLowerCase().includes(lowerFilter) || 
+                i.c.toLowerCase().includes(lowerFilter) || 
+                i.v.includes(filter)
+            );
+
+            if (filtered.length > 0) {
+                hasResult = true;
+                const section = document.createElement('div');
+                section.className = 'category-section';
+                section.innerHTML = `<div class="category-title">${category}</div>`;
+                
+                const grid = document.createElement('div');
+                grid.className = 'grid';
+
+                filtered.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.onclick = () => copyText(item.display);
+                    
+                    card.innerHTML = `
+                        <div class="emoji-visual">${item.v}</div>
+                        <div class="emoji-code">${item.display}</div>
+                    `;
+                    grid.appendChild(card);
+                });
+                
+                section.appendChild(grid);
+                app.appendChild(section);
+            }
+        }
+        
+        if (!hasResult) app.innerHTML = `<div style="text-align:center;color:#999;margin-top:40px">Not found</div>`;
+    }
+
+    function copyText(txt) {
+        navigator.clipboard.writeText(txt).then(() => {
+            const t = document.getElementById('toast');
+            t.textContent = `Copied ${txt}`;
+            t.className = "show";
+            setTimeout(() => t.className = "", 1500);
+        });
+    }
+
+    function handleSearch() {
+        render(document.getElementById('search').value);
+    }
+
+    fetchData();
+</script>
+</body>
+</html>

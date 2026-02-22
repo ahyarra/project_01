@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IG Tools: Gabungan Lengkap</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        h2 { margin-bottom: 5px; color: #2c3e50; }
+        p { color: #7f8c8d; margin-bottom: 30px; font-size: 0.95em; text-align: center; }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .box {
+            background: white;
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+        }
+
+        /* Hover biasa (mouse) */
+        .box:hover { border-color: #3498db; background-color: #ebf5fb; }
+
+        /* EFEK SAAT DRAG FILE (PERBAIKAN) */
+        .box.active-drag {
+            border-style: solid;
+            border-color: #3498db;
+            background-color: #d6eaf8; /* Biru lebih gelap dikit biar kerasa */
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Saat file sudah masuk */
+        .box.filled { border-style: solid; border-color: #27ae60; background-color: #e9f7ef; }
+
+        .icon { font-size: 30px; margin-bottom: 10px; pointer-events: none; }
+        .label { font-weight: bold; font-size: 1.1em; pointer-events: none; }
+        .count { font-size: 0.9em; color: #27ae60; font-weight: bold; margin-top: 5px; pointer-events: none; }
+        .desc { font-size: 0.8em; color: #95a5a6; margin-top: 5px; pointer-events: none; }
+
+        /* Area Tombol */
+        .action-area {
+            margin-top: 30px;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .group-title {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            color: white;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        button:active { transform: scale(0.98); }
+
+        /* Warna Tombol Group 1 (List Biasa) */
+        .btn-raw-dl { background-color: #7f8c8d; }
+        .btn-raw-dl:hover { background-color: #616a6b; }
+        .btn-raw-cp { background-color: #95a5a6; }
+        .btn-raw-cp:hover { background-color: #7f8c8d; }
+
+        /* Warna Tombol Group 2 (Analisa Unfoll) */
+        .btn-anl-dl { background-color: #c0392b; }
+        .btn-anl-dl:hover { background-color: #a93226; }
+        .btn-anl-cp { background-color: #e74c3c; }
+        .btn-anl-cp:hover { background-color: #c0392b; }
+
+        /* Status Message */
+        #resultSummary {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #c0392b;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>IG Tools Gabungan</h2>
+    <p>Upload file Followers & Following. Pilih output yang Anda inginkan di bawah.</p>
+
+    <div class="container">
+        <div class="box" id="boxFollowers" onclick="document.getElementById('inFollowers').click()">
+            <div class="icon">👥</div>
+            <div class="label">Followers</div>
+            <div class="count" id="countFollowers"></div>
+            <div class="desc" id="txtFollowers">Klik / Drag file followers</div>
+            <input type="file" id="inFollowers" hidden accept=".html">
+        </div>
+
+        <div class="box" id="boxFollowing" onclick="document.getElementById('inFollowing').click()">
+            <div class="icon">👀</div>
+            <div class="label">Following</div>
+            <div class="count" id="countFollowing"></div>
+            <div class="desc" id="txtFollowing">Klik / Drag file following</div>
+            <input type="file" id="inFollowing" hidden accept=".html">
+        </div>
+    </div>
+
+    <div id="resultSummary"></div>
+
+    <div class="action-area" id="actionArea">
+        
+        <div>
+            <div class="group-title">Mode 1: List Biasa (Hanya Pisah Kolom)</div>
+            <div class="btn-row">
+                <button class="btn-raw-dl" onclick="downloadRaw()">⬇️ Download CSV</button>
+                <button class="btn-raw-cp" onclick="copyRaw()">📋 Copy Excel</button>
+            </div>
+        </div>
+
+        <div>
+            <div class="group-title">Mode 2: Deteksi Unfoll (Lengkap + Link)</div>
+            <div class="btn-row">
+                <button class="btn-anl-dl" onclick="downloadAnalysis()">⬇️ Download Hasil</button>
+                <button class="btn-anl-cp" onclick="copyAnalysis()">📋 Copy Hasil</button>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    let listFollowers = [];
+    let listFollowing = [];
+    let isFollowersReady = false;
+    let isFollowingReady = false;
+
+    setup('boxFollowers', 'inFollowers', 'txtFollowers', 'countFollowers', 'followers');
+    setup('boxFollowing', 'inFollowing', 'txtFollowing', 'countFollowing', 'following');
+
+    // --- FUNGSI MEMBERSIHKAN USERNAME ---
+    function cleanUsername(rawText) {
+        let clean = rawText || "";
+        clean = clean.replace('https://www.instagram.com/', '')
+                     .replace('http://www.instagram.com/', '')
+                     .replace('www.instagram.com/', '')
+                     .replace('instagram.com/', '')
+                     .replace('_u/', '');
+        
+        if (clean.includes('?')) clean = clean.split('?')[0];
+        if (clean.endsWith('/')) clean = clean.slice(0, -1);
+        
+        return clean.trim();
+    }
+
+    function setup(boxId, inputId, txtId, countId, type) {
+        const box = document.getElementById(boxId);
+        const input = document.getElementById(inputId);
+        
+        const process = (file) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(e.target.result, 'text/html');
+                const links = doc.querySelectorAll('a');
+                
+                const usernames = [];
+                links.forEach(a => {
+                    const raw = a.href || a.textContent;
+                    const validUser = cleanUsername(raw);
+                    // Filter link sampah
+                    if(validUser && validUser.length > 1 && !validUser.includes('facebook') && !validUser.includes('javascript')) {
+                        usernames.push(validUser);
+                    }
+                });
+
+                if(type === 'followers') {
+                    listFollowers = usernames;
+                    isFollowersReady = true;
+                } else {
+                    listFollowing = usernames;
+                    isFollowingReady = true;
+                }
+
+                // Update UI Box
+                box.classList.remove('active-drag'); // Hapus efek drag jika ada
+                box.classList.add('filled');
+                document.getElementById(countId).innerText = `${usernames.length} Akun`;
+                document.getElementById(txtId).innerText = file.name;
+
+                checkReady();
+            };
+            reader.readAsText(file);
+        };
+
+        // --- PERBAIKAN DRAG & DROP VISUAL ---
+        
+        // 1. Saat file masuk area (Drag Enter)
+        box.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            box.classList.add('active-drag');
+        });
+
+        // 2. Saat file berada di atas area (Drag Over)
+        box.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            box.classList.add('active-drag'); // Pastikan kelas tetap ada
+        });
+
+        // 3. Saat file keluar area (Drag Leave)
+        box.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            box.classList.remove('active-drag');
+        });
+
+        // 4. Saat file dijatuhkan (Drop)
+        box.addEventListener('drop', (e) => { 
+            e.preventDefault(); 
+            box.classList.remove('active-drag'); // Hapus efek visual
+            if(e.dataTransfer.files[0]) process(e.dataTransfer.files[0]); 
+        });
+
+        input.addEventListener('change', (e) => { if(e.target.files[0]) process(e.target.files[0]); });
+    }
+
+    function checkReady() {
+        if(isFollowersReady && isFollowingReady) {
+            document.getElementById('actionArea').style.display = 'flex';
+            
+            // Preview Unfollowers
+            const setFollowers = new Set(listFollowers);
+            const unfollowersCount = listFollowing.filter(u => !setFollowers.has(u)).length;
+            
+            const summary = document.getElementById('resultSummary');
+            summary.innerText = `⚠️ Terdeteksi ${unfollowersCount} orang tidak follback!`;
+        }
+    }
+
+    // ================= LOGIKA PEMBUATAN DATA =================
+
+    // GENERATOR 1: LIST BIASA (Hanya 2 Kolom)
+    function generateRawData(separator) {
+        const maxLen = Math.max(listFollowers.length, listFollowing.length);
+        let content = `Following${separator}Followers\n`; 
+
+        for(let i=0; i < maxLen; i++) {
+            const uFollowing = listFollowing[i] || ""; 
+            const uFollower = listFollowers[i] || "";
+            content += `${uFollowing}${separator}${uFollower}\n`;
+        }
+        return content;
+    }
+
+    // GENERATOR 2: ANALISA LENGKAP (4 Kolom + Link)
+    function generateAnalysisData(separator) {
+        const setFollowers = new Set(listFollowers);
+        const listUnfollowers = listFollowing.filter(u => !setFollowers.has(u));
+        const maxLen = Math.max(listFollowing.length, listFollowers.length, listUnfollowers.length);
+
+        let content = `Following${separator}Followers${separator}Unfollowers${separator}Link Unfollower\n`;
+
+        for(let i=0; i < maxLen; i++) {
+            const col1 = listFollowing[i] || ""; // Following
+            const col2 = listFollowers[i] || ""; // Followers
+            const col3 = listUnfollowers[i] || ""; // Unfoll
+            const col4 = col3 ? `https://www.instagram.com/${col3}/` : ""; // Link
+
+            content += `${col1}${separator}${col2}${separator}${col3}${separator}${col4}\n`;
+        }
+        return content;
+    }
+
+    // ================= FUNGSI TOMBOL =================
+
+    // 1. Tombol Download LIST BIASA
+    function downloadRaw() {
+        const csvContent = generateRawData(';'); // Titik koma untuk Excel Indo
+        saveFile(csvContent, 'list_biasa_pisah_kolom.csv');
+    }
+
+    // 2. Tombol Copy LIST BIASA
+    function copyRaw() {
+        const textContent = generateRawData('\t'); // Tab untuk Paste
+        copyText(textContent, "List Biasa tersalin!");
+    }
+
+    // 3. Tombol Download ANALISA (Unfoll)
+    function downloadAnalysis() {
+        const csvContent = generateAnalysisData(';');
+        saveFile(csvContent, 'analisa_unfollowers_lengkap.csv');
+    }
+
+    // 4. Tombol Copy ANALISA (Unfoll)
+    function copyAnalysis() {
+        const textContent = generateAnalysisData('\t');
+        copyText(textContent, "Data Analisa Unfoll tersalin!");
+    }
+
+    // --- Helper Download & Copy ---
+    function saveFile(content, filename) {
+        const blob = new Blob([content], {type: 'text/csv;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+    }
+
+    function copyText(content, msg) {
+        navigator.clipboard.writeText(content).then(() => {
+            alert(`✅ ${msg}\nLangsung Paste di Excel.`);
+        });
+    }
+
+</script>
+
+</body>
+</html>
