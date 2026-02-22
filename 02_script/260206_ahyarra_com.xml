@@ -159,7 +159,7 @@
 
     <div class="bg-video-wrap animate__animated animate__fadeIn">
         <video autoplay='autoplay' loop='loop' muted='muted' playsinline='playsinline' poster='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhilGwamPFkycRTX-XpZxNtDeJsAl3dlXXHN5iXn-rW2pXTvswrJqSROYBUoLdl5ExSyYuuWyDztQrSlQAn0SoXPhxFm_1rvr-VcR2pN-YAQWrFWq9Hq9B9OUWHS_zKUNQDavnruz5GlXejgh6bsfOi8NL8R2o_dg_s5E5T4chTeOYx1IhFJYKz7eDFjw/s16000/imgi_11_ahyarra_bg%201.webp'>
-            <source src='https://github.com/ahyarramadhan/ahyarra.github.io/raw/master/bg-video_ahyarra.webm' type='video/mp4'/>
+            <source src='https://github.com/ahyarramadhan/ahyarra.github.io/raw/master/bg-video_ahyarra.webm' type='video/webm'/>
         </video>
     </div>
 
