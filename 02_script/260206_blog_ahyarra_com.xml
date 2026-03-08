@@ -1841,20 +1841,16 @@ body#layout .uk-slideshow-items, body#layout .navku{display:none}
 <div class='post-depan'>
 <b:if cond='data:post.labels any (l =&gt; l.name == &quot;home&quot;)'>
 <div class='post-labels yellow'>home</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;utilite&quot;)'/>
-<div class='post-labels yellow'>diy-kits</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tutorial&quot;)'/>
-<div class='post-labels yellow'>tutorial</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;earring&quot;)'/>
 <div class='post-labels cyan'>earring</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;necklace&quot;)'/>
-<div class='post-labels cyan'>necklace</div>
+<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tools&quot;)'/>
+<div class='post-labels cyan'>tools</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;article&quot;)'/>
 <div class='post-labels cyan'>article</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;ring&quot;)'/>
 <div class='post-labels green'>ring</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;bracelet&quot;)'/>
-<div class='post-labels green'>bracelet</div>
+<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tutorial&quot;)'/>
+<div class='post-labels green'>tutorial</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;project&quot;)'/>
 <div class='post-labels green'>project</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;art;b&quot;)'/>
@@ -3451,7 +3447,7 @@ color:#0943bb;
                             <b:widget-settings>
                               <b:widget-setting name='sorting'>FREQUENCY</b:widget-setting>
                               <b:widget-setting name='display'>LIST</b:widget-setting>
-                              <b:widget-setting name='selectedLabelsList'>art,bracelet,diy-kits,earring,home,necklace,ring</b:widget-setting>
+                              <b:widget-setting name='selectedLabelsList'>art,tutorial,earring,home,tools,ring</b:widget-setting>
                               <b:widget-setting name='showType'>USER_SELECTED</b:widget-setting>
                               <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
                             </b:widget-settings>
@@ -4155,20 +4151,16 @@ color:#0943bb;
 <div class='post-depan'>
 <b:if cond='data:post.labels any (l =&gt; l.name == &quot;home&quot;)'>
 <div class='post-labels yellow'>home</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;utilite&quot;)'/>
-<div class='post-labels yellow'>diy-kits</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tutorial&quot;)'/>
-<div class='post-labels yellow'>tutorial</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;earring&quot;)'/>
 <div class='post-labels cyan'>earring</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;necklace&quot;)'/>
-<div class='post-labels cyan'>necklace</div>
+<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tools&quot;)'/>
+<div class='post-labels cyan'>tools</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;article&quot;)'/>
 <div class='post-labels cyan'>article</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;ring&quot;)'/>
 <div class='post-labels green'>ring</div>
-<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;bracelet&quot;)'/>
-<div class='post-labels green'>bracelet</div>
+<b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tutorial&quot;)'/>
+<div class='post-labels green'>tutorial</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;project&quot;)'/>
 <div class='post-labels green'>project</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;art;b&quot;)'/>
@@ -4464,7 +4456,7 @@ color:#0943bb;
               <b:widget-settings>
                 <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
                 <b:widget-setting name='display'>CLOUD</b:widget-setting>
-                <b:widget-setting name='selectedLabelsList'>event,freebies,shop,tutorial</b:widget-setting>
+                <b:widget-setting name='selectedLabelsList'>event,freebies,shop,tutorial,tools</b:widget-setting>
                 <b:widget-setting name='showType'>ALL</b:widget-setting>
                 <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
               </b:widget-settings>
