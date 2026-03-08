@@ -3332,7 +3332,7 @@ color:#0943bb;
                             <b:widget-settings>
                               <b:widget-setting name='sorting'>FREQUENCY</b:widget-setting>
                               <b:widget-setting name='display'>LIST</b:widget-setting>
-                              <b:widget-setting name='selectedLabelsList'>article,freebies,project,tutorial</b:widget-setting>
+                              <b:widget-setting name='selectedLabelsList'>article,freebies,project,tutorial,tools</b:widget-setting>
                               <b:widget-setting name='showType'>USER_SELECTED</b:widget-setting>
                               <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
                             </b:widget-settings>
