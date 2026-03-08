@@ -1523,6 +1523,7 @@ main .main_content{margin-top:65px}
 .hamburger {
     right: 5%;
 }
+.single_post .post_title,.single_post .post_header,.full_header .post_title,.full_header .post_header{font-size:28px;}
 }
 @media (max-width:575px){
 
