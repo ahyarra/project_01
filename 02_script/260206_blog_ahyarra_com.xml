@@ -1015,7 +1015,7 @@ main .main_content{ padding-top:20px;margin-top:100px;margin-bottom:70px}
 /* .blog_posts + .blog_pager */
 .blog_posts .post_thumbnail a{color:#fff}
 .blog_posts .post_thumbnail a img{display:block;width:100%; border-radius: 10px 10px 0 0;}
-.blog_posts .post_title{font-size:18px;font-weight:500;line-height:1.25em!important;text-transform:uppercase;text-align: center;}
+.blog_posts .post_title{font-size:18px;font-weight:500;line-height:1.25em!important;text-transform:uppercase;text-align: left;}
 .blog_posts .post_title a{color:#333}
 .blog_posts .post_title a:hover,.blog_posts .post_title a:focus{color:$(keycolor)}
 .post_labels {display:inline-block!important;}
@@ -1840,7 +1840,7 @@ body#layout .uk-slideshow-items, body#layout .navku{display:none}
 		<b:includable id='postdepan'>
 <div class='post-depan'>
 <b:if cond='data:post.labels any (l =&gt; l.name == &quot;home&quot;)'>
-<div class='post-labels yellow'>home</div>
+<div class='post-labels yellow'>digital</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;earring&quot;)'/>
 <div class='post-labels cyan'>earring</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tools&quot;)'/>
@@ -3332,7 +3332,7 @@ color:#0943bb;
                             <b:widget-settings>
                               <b:widget-setting name='sorting'>FREQUENCY</b:widget-setting>
                               <b:widget-setting name='display'>LIST</b:widget-setting>
-                              <b:widget-setting name='selectedLabelsList'>article,freebies,project,tutorial,tools</b:widget-setting>
+                              <b:widget-setting name='selectedLabelsList'>article,project,tutorial,tools</b:widget-setting>
                               <b:widget-setting name='showType'>USER_SELECTED</b:widget-setting>
                               <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
                             </b:widget-settings>
@@ -3447,7 +3447,7 @@ color:#0943bb;
                             <b:widget-settings>
                               <b:widget-setting name='sorting'>FREQUENCY</b:widget-setting>
                               <b:widget-setting name='display'>LIST</b:widget-setting>
-                              <b:widget-setting name='selectedLabelsList'>art,tutorial,earring,home,tools,ring</b:widget-setting>
+                              <b:widget-setting name='selectedLabelsList'>art,earring,digital,tools,ring,freebies</b:widget-setting>
                               <b:widget-setting name='showType'>USER_SELECTED</b:widget-setting>
                               <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
                             </b:widget-settings>
@@ -4150,7 +4150,7 @@ color:#0943bb;
                             <b:includable id='postdepan'>
 <div class='post-depan'>
 <b:if cond='data:post.labels any (l =&gt; l.name == &quot;home&quot;)'>
-<div class='post-labels yellow'>home</div>
+<div class='post-labels yellow'>digital</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;earring&quot;)'/>
 <div class='post-labels cyan'>earring</div>
 <b:elseif cond='data:post.labels any (l =&gt; l.name == &quot;tools&quot;)'/>
@@ -4456,7 +4456,7 @@ color:#0943bb;
               <b:widget-settings>
                 <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
                 <b:widget-setting name='display'>CLOUD</b:widget-setting>
-                <b:widget-setting name='selectedLabelsList'>event,freebies,shop,tutorial,tools</b:widget-setting>
+                <b:widget-setting name='selectedLabelsList'>event,freebies,shop,tools</b:widget-setting>
                 <b:widget-setting name='showType'>ALL</b:widget-setting>
                 <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
               </b:widget-settings>
