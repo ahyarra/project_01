@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+
+<script type='text/javascript'>
+//<![CDATA[
+(function() {
+    try {
+        var url = new URL(window.location.href);
+        // Cek apakah ada parameter 'm' dan nilainya '1'
+        if (url.searchParams.get('m') === '1') {
+            // Hapus parameter 'm'
+            url.searchParams.delete('m');
+            // Update URL di browser tanpa reload
+            window.history.replaceState(null, document.title, url.toString());
+        }
+    } catch (e) {
+        // Fallback untuk browser purba (sangat jarang terjadi di 2024+)
+        console.log("Browser tidak mendukung URL API");
+    }
+})();
+//]]>
+</script>
+
+    <meta charset='utf-8'/>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta content='#0943bb' name='theme-color'/>
+    
+    <title><data:blog.pageTitle/></title>
+
+    <link href='https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css' rel='stylesheet'/>
+    
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' rel='stylesheet'/>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&amp;display=swap' rel='stylesheet'/>
+
+    <b:include data='blog' name='all-head-content'/>
+
+    <b:skin><![CDATA[
+    /* -----------------------------------------------
+    Theme: Ahyarra Portfolio (UIkit + ThreeJS Loader)
+    ----------------------------------------------- 
+    */
+    
+    body {
+        font-family: 'Wix Madefor Text', sans-serif;
+        background-color: transparent; 
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    /* --- LOADER CSS --- */
+    #cssload {
+        position: fixed; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        height: 100vh;
+        background: #0943bb;
+        z-index: 9999;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        overflow: hidden;
+    }
+    
+    #cssload canvas {
+        outline: none;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    /* Video Background Wrapper */
+    .bg-video-wrap {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        z-index: 0; 
+        overflow: hidden;
+    }
+    .bg-video-wrap video {
+        min-width: 100%; min-height: 100%; width: auto; height: auto;
+        position: absolute; top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+	
+    .subheader{
+		margin: 0;
+		font-size:0.8rem;
+	}
+	
+	.descku{
+		margin-top: 0px !important;
+		padding: 0 10px;
+	}
+	
+	.descku p{
+		line-height:110%;
+		font-size:1rem;
+		
+	}
+	
+	/* MODAL FADE ONLY & CEPAT */
+	.uk-modal, .uk-modal-dialog { transition-duration: 0.15s !important; }
+	.uk-modal-dialog { transform: translateY(0) !important; }
+	
+    /* Glassmorphism Card */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+	
+	.glass-card h1 {
+	font-size: 2rem;
+	color:#333;
+    }
+
+    /* Profile Image */
+    .profile-img {
+        width: 160px; height: 160px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        flex-shrink: 0; 
+    }
+
+    /* UIkit Button Overrides to match previous design */
+    .uk-button { text-transform: none; }
+    .btn-rounded { border-radius: 50px; font-weight: 600; font-size: 0.85rem; padding: 0 25px; line-height: 40px; min-height: 40px;}
+    .btn-outline-dark { border: 2px solid #333 !important; color: #333 !important; background: transparent; transition: 0.3s; }
+    .btn-outline-dark:hover { background: #333 !important; color: white !important; }
+    .btn-primary-custom { background-color: #0943bb !important; border: 2px solid #0943bb !important; color: white !important; transition: 0.3s; }
+    .btn-primary-custom:hover { background-color: #062f85 !important; border-color: #062f85 !important; color: white !important; }
+    .pad-text{padding:0 12px;}
+
+    /* Utility Gaps for UIkit */
+    .gap-2 { gap: 0.1rem !important; }
+    .gap-4 { gap: 0.5rem !important; }
+
+    /* Contact Links */
+    .contact-link { 
+        text-decoration: none !important; 
+        color: #333 !important; 
+        font-weight: 500; 
+        font-size: 0.8rem; 
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px; 
+        padding: 0px 12px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.4); 
+    }
+    .contact-link:hover { background: rgba(255,255,255,0.7); }
+    .contact-link i { 
+        color: #0943bb; 
+        font-size: 1rem; 
+    }
+
+    /* Footer */
+    .footer-fixed { text-align: right; padding: 15px; z-index: -1; }
+    .footer-fixed h3 { font-size: 0.7rem; color: #333; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Header Logo */
+    .header-logo { text-align: right; }
+    .header-logo img { max-width: 280px; height: auto; padding:0 20px;}
+
+    /* Custom Modal Radius */
+    .custom-modal-dialog { border-radius: 1rem; overflow: hidden; }
+
+    /* Mobile Adjustments */
+    @media (max-width: 576px) { /* UIkit medium breakpoint */
+        .header-logo { text-align: center; }
+        .glass-card { text-align: center; padding: 30px 20px; }
+        .contact-link { justify-content: center; width: auto; font-size: 0.6rem; padding: 4px 12px; gap:4px}
+		.contact-link i { font-size: 0.8rem; }
+		.descku p{ font-size:0.7rem; }
+		.glass-card h1 { font-size: 1.6rem;}
+    }
+    ]]></b:skin>
+</head>
+<body>
+
+    <div id='cssload'></div>
+
+    <div class="bg-video-wrap animate__animated animate__fadeIn">
+        <video autoplay='autoplay' loop='loop' muted='muted' playsinline='playsinline' poster='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhilGwamPFkycRTX-XpZxNtDeJsAl3dlXXHN5iXn-rW2pXTvswrJqSROYBUoLdl5ExSyYuuWyDztQrSlQAn0SoXPhxFm_1rvr-VcR2pN-YAQWrFWq9Hq9B9OUWHS_zKUNQDavnruz5GlXejgh6bsfOi8NL8R2o_dg_s5E5T4chTeOYx1IhFJYKz7eDFjw/s16000/imgi_11_ahyarra_bg%201.webp'>
+            <source src='https://github.com/ahyarramadhan/ahyarra.github.io/raw/master/bg-video_ahyarra.webm' type='video/webm'/>
+        </video>
+    </div>
+
+    <div class="uk-container uk-flex uk-flex-column uk-flex-center" style="min-height: 100vh; position: relative; z-index: 2;">
+        
+        <div class="uk-width-1-1 uk-width-5-6@l uk-margin-auto">
+            
+            <div class="uk-margin-bottom">
+                <div class="uk-width-1-1 header-logo animate__animated animate__fadeInDown">
+                    <img src='https://lh3.googleusercontent.com/-LdEfZ41P_9Y/YYJ41_n572I/AAAAAAAAAf0/Aw5LdmdtFjgvhG8zOGBG7WfwHK_0MXojACLcBGAsYHQ/AHYARRA-header_01.png' alt="Logo"/>
+                </div>
+            </div>
+
+            <div class="glass-card animate__animated animate__fadeInUp">
+                <div class="uk-flex-middle" uk-grid="uk-grid">
+                    
+                    <div class="uk-width-auto@m uk-flex uk-flex-center uk-margin-remove-bottom@m">
+                        <div class="uk-position-relative">
+                            <img class="profile-img" src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkCqhve1m-HVIWsKWJeaiWKjxlQGqXlcVRB0SiQ0c_6mE7qcFI_iIWhh1-Bws7BPs-NOOLZKDTSc-DEg7jmJVlYnF_8yIuv2PleD04so1dr-l4UKnbzzHpjIYP8FaDE2vc0B8aRtxYzSXoDt4_PkV4BkjarDmIgDTYY_KrIa5G0SjL5hBrjE8ateEg/s16000/image%203.webp' alt="Ahyar Ramadhan"/>
+                        </div>
+                    </div>
+                    
+                    <div class="uk-width-expand@m uk-margin-small-top uk-text-center uk-text-left@m">
+                        <h1 class="uk-text-bold uk-margin-remove pad-text">Ahyar Ramadhan</h1>
+                        <h2 class="subheader uk-text-small uk-text-italic uk-text-muted uk-margin-small-bottom uk-text-uppercase pad-text">Art Director &amp; Creative Designer</h2>
+                        
+                        <div class="uk-flex uk-flex-wrap uk-flex-center uk-flex-left@m gap-2">
+                            <a class="contact-link" href="https://wa.me/6285155119809/?text=halo%20ahyar" target="_blank">
+                                <i class="fa-solid fa-phone-square"></i> <span>+62 851 5511 9809</span>
+                            </a>
+                            <a class="contact-link" href="mailto:contact@ahyarra.com">
+                                <i class="fa-solid fa-envelope"></i> <span>contact@ahyarra.com</span>
+                            </a>
+                            <span class="contact-link">
+                                <i class="fa-solid fa-map-marker-alt" style="color: #666;"></i> <span style="color: #666;">Medan, Indonesia</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+<hr class="uk-margin-small"/>
+                <div class="descku uk-flex-middle" uk-grid="uk-grid">
+                    <div class="uk-width-2-3@l uk-text-center uk-text-left@l uk-margin-remove-bottom@l">
+                        <p class="uk-margin-remove-bottom uk-text-break" style="text-align: justify; color: #333;">
+                            <strong>With over a year of experience as a Content Strategist</strong> in a public company and more than <strong>5 years as a Creative Designer</strong>, I am capable of developing content strategies that are not only creative but also effective in achieving business goals.
+                        </p>
+                    </div>
+                    
+                    <div class="uk-width-1-3@l">
+                        <div class="uk-flex uk-flex-wrap uk-flex-center uk-flex-right@l gap-4">
+                            <button type="button" class="uk-button btn-outline-dark btn-rounded" uk-toggle="target: #portfolioModal">
+                                Portfolio &amp; CV
+                            </button>
+                            <button type="button" class="uk-button btn-outline-dark btn-rounded" uk-toggle="target: #socialModal">
+                                Social Media
+                            </button>
+                            <a href="https://blog.ahyarra.com/" target="_blank" class="uk-button btn-primary-custom btn-rounded">
+                                Blog Web
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-fixed">
+                <h3>©2025 Ahyarra</h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolioModal" class="uk-flex-top" uk-modal="true">
+        <div class="uk-modal-dialog uk-margin-auto-vertical custom-modal-dialog uk-box-shadow-large">
+            <div class="uk-modal-header" style="border-bottom: 0; padding-bottom: 0;">
+                <h5 class="uk-modal-title uk-text-bold uk-text-default">Portfolio &amp; CV</h5>
+                <button class="uk-modal-close-default" type="button" uk-close="uk-close"></button>
+            </div>
+            <div class="uk-modal-body uk-padding-remove-top">
+                <ul class="uk-list uk-list-divider">
+                    <li><a href="https://go.ahyarra.com/porto" target="_blank" class="uk-link-reset uk-display-block">📄 Portfolio &amp; CV (PDF)</a></li>
+                    <li><a href="https://go.ahyarra.com/repo" target="_blank" class="uk-link-reset uk-display-block">📂 Portfolio Repository</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="socialModal" class="uk-flex-top" uk-modal="true">
+        <div class="uk-modal-dialog uk-margin-auto-vertical custom-modal-dialog uk-box-shadow-large">
+            <div class="uk-modal-header" style="border-bottom: 0; padding-bottom: 0;">
+                <h5 class="uk-modal-title uk-text-bold uk-text-default">Social Media</h5>
+                <button class="uk-modal-close-default" type="button" uk-close="uk-close"></button>
+            </div>
+            <div class="uk-modal-body uk-padding-remove-top">
+                <ul class="uk-list uk-list-divider">
+                    <li><a href="https://instagram.com/ahyarra_" target="_blank" class="uk-link-reset uk-display-block"><i class="fab fa-instagram uk-margin-small-right"></i> Instagram</a></li>
+                    <li><a href="https://behance.net/ahyarra" target="_blank" class="uk-link-reset uk-display-block"><i class="fab fa-behance uk-margin-small-right"></i> Behance</a></li>
+                    <li><a href="https://www.linkedin.com/in/ahyarra" target="_blank" class="uk-link-reset uk-display-block"><i class="fab fa-linkedin uk-margin-small-right"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <b:section id='main-content' showaddelement='no' style='display:none;'></b:section>
+
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    
+    <script src='https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit-icons.min.js'></script>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
+
+    <script>
+    //<![CDATA[
+        // 1. URL Cleaning
+        var uri = window.location.toString();
+        if (uri.indexOf("?m=1") > 0) {
+            var clean_uri = uri.substring(0, uri.indexOf("?m=1"));
+            window.history.replaceState({}, document.title, clean_uri);
+        }
+
+// 2. LOGIKA 3D LOADER & ANIMASI
+    var triggerFinishAnimation; 
+
+    (function() {
+        var $container = document.getElementById('cssload');
+        if (!$container) return; 
+
+        // 1. Ambil ukuran layar
+        var width = $container.clientWidth || window.innerWidth;
+        var height = $container.clientHeight || window.innerHeight;
+        if (height === 0) height = window.innerHeight;
+
+        var length = 30,
+            radius = 5.6,
+            rotatevalue = 0.035,
+            acceleration = 0,
+            animatestep = 0,
+            toend = false,
+            pi2 = Math.PI * 2,
+            group = new THREE.Group(),
+            mesh, ringcover, ring,
+            camera, scene, renderer;
+
+        // 2. Setup Kamera
+        camera = new THREE.PerspectiveCamera(65, width / height, 1, 10000);
+        
+        // --- PERBAIKAN ZOOM (Disini kuncinya) ---
+        // Jika layar HP (lebar < tinggi), kamera mundur ke 250.
+        // Jika Desktop, tetap di 150 seperti aslinya.
+        if (width < height) {
+            camera.position.z = 250; // Mundur untuk HP (atur angka ini jika kurang pas)
+        } else {
+            camera.position.z = 150; // Posisi asli untuk Desktop
+        }
+
+        scene = new THREE.Scene();
+        scene.add(group);
+
+        mesh = new THREE.Mesh(
+            new THREE.TubeGeometry(new(THREE.Curve.create(function() {},
+                function(percent) {
+                    var x = length * Math.sin(pi2 * percent),
+                        y = radius * Math.cos(pi2 * 3 * percent),
+                        z, t;
+                    t = percent % 0.25 / 0.25;
+                    t = percent % 0.25 - (2 * (1 - t) * t * -0.0185 + t * t * 0.25);
+                    if (Math.floor(percent / 0.25) == 0 || Math.floor(percent / 0.25) == 2) {
+                        t *= -1;
+                    }
+                    z = radius * Math.sin(pi2 * 2 * (percent - t));
+                    return new THREE.Vector3(x, y, z);
+                }
+            ))(), 200, 1.1, 2, true),
+            new THREE.MeshBasicMaterial({ color: 0xffffff })
+        );
+        group.add(mesh);
+
+        ringcover = new THREE.Mesh(new THREE.PlaneGeometry(50, 15, 1), new THREE.MeshBasicMaterial({ color: 0x0943bb, opacity: 0, transparent: true }));
+        ringcover.position.x = length + 1;
+        ringcover.rotation.y = Math.PI / 2;
+        group.add(ringcover);
+
+        ring = new THREE.Mesh(new THREE.RingGeometry(4.3, 5.55, 32), new THREE.MeshBasicMaterial({ color: 0xffffff, opacity: 0, transparent: true }));
+        ring.position.x = length + 1.1;
+        ring.rotation.y = Math.PI / 2;
+        group.add(ring);
+
+        (function() {
+            var plain, i;
+            for (i = 0; i < 10; i++) {
+                plain = new THREE.Mesh(new THREE.PlaneGeometry(length * 2 + 1, radius * 3, 1), new THREE.MeshBasicMaterial({ color: 0x0943bb, transparent: true, opacity: 0.13 }));
+                plain.position.z = -2.5 + i * 0.5;
+                group.add(plain);
+            }
+        })();
+
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height); 
+        renderer.setClearColor('#0943bb');
+
+        $container.appendChild(renderer.domElement);
+
+        // Auto-resize handler
+        window.addEventListener('resize', function() {
+            var newWidth = $container.clientWidth || window.innerWidth;
+            var newHeight = $container.clientHeight || window.innerHeight;
+            
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+            
+            // Update posisi kamera juga saat resize (opsional)
+            if (newWidth < newHeight) {
+                camera.position.z = 250; 
+            } else {
+                camera.position.z = 150;
+            }
+
+            renderer.setSize(newWidth, newHeight);
+        });
+
+        function easing(t, b, c, d) {
+            if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+            return c / 2 * ((t -= 2) * t * t + 2) + b;
+        }
+
+        function render() {
+            var progress;
+            animatestep = Math.max(0, Math.min(240, toend ? animatestep + 1 : animatestep - 4));
+            acceleration = easing(animatestep, 0, 1, 240);
+
+            if (acceleration > 0.35) {
+                progress = (acceleration - 0.35) / 0.65;
+                group.rotation.y = -Math.PI / 2 * progress;
+                group.position.z = 50 * progress;
+                progress = Math.max(0, (acceleration - 0.97) / 0.03);
+                mesh.material.opacity = 1 - progress;
+                ringcover.material.opacity = ring.material.opacity = progress;
+                ring.scale.x = ring.scale.y = 0.9 + 0.1 * progress;
+            }
+            renderer.render(scene, camera);
+        }
+
+        function animate() {
+            mesh.rotation.x += rotatevalue + acceleration;
+            render();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        triggerFinishAnimation = function() { toend = true; };
+    })();
+
+    // 3. TRIGGER LOAD & TRANSITION
+    $(window).on("load", function() {
+        if (typeof triggerFinishAnimation === "function") {
+            triggerFinishAnimation(); 
+        }
+
+        setTimeout(function() {
+            $("#cssload").fadeOut(1000, function() {
+                if (typeof WOW === 'function') { 
+                    new WOW().init(); 
+                } else if (window.WOW) {
+                    new WOW().init();
+                }
+            });
+        }, 4000); 
+    });
+    //]]>
+    </script>
+
+</body>
+</html>

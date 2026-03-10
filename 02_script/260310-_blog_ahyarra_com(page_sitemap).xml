@@ -1,0 +1,127 @@
+<b:if cond="data:blog.pageId == &quot;8975970833632721554&quot;">
+<style type="text/css">
+.post_share{display:none}
+#table-outer {padding: 0 8px;margin: 1% 0;}
+form#post-searcher {border:1px solid #ccc;}
+#table-outer input {display: inline-block;margin: 0;padding: 0.8%;width: 97%;font: 12px Arial;border:none;}
+#table-outer table {border:none;width:100%;}
+#table-outer td {padding:1px 2px;margin:2px 0;}
+#table-outer label {font-weight: bold;color: #666;display: block;text-align: left;margin: 0 10px 0 0;font-size: 90%;width:165px}
+#table-outer select[disabled] {opacity:.4}
+#postSearcher {display:block;margin:0 0;padding:0 0;}
+#postSearcher input, #table-outer select {width: 100%;background-color: #ccc;border: none;display: block;margin: 0 0;padding: 2%;font: normal normal 10px Wix Madefor Text, Verdana, Arial, Sans-Serif;color: #fff;outline: none;}
+#postSearcher input {width:96%;padding:2%;}
+#postSearcher input:focus, #table-outer select:focus {background-color:#9a9a9a}
+#feed-container {display:block;clear:both;margin:0;padding:0;list-style:none;overflow:hidden;position:relative;}
+#feed-container li {list-style: none;margin: 1%;padding: 0;box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.2);color: #999;width: 31%;float: left;display: inline;height: 330px;overflow: hidden;}
+#feed-container li .inner {overflow: hidden;word-wrap: break-word;text-overflow: ellipsis;font-family: 'Wix Madefor Text', arial;}
+#feed-container li .inner strong {height: 116px;overflow: hidden;word-wrap: break-word;text-overflow: ellipsis;padding: 0 5px;font-size: 12px;font-weight: normal;color: #333;}
+#feed-container li a {color: #222;font-weight: bold;width: 100%;display: block;font-size: 1em;}
+#feed-container li a:hover {text-decoration:none;color:#0737a1;}
+#feed-container li a.gambarsite {width:100%;height:240px;display:block;overflow:hidden;margin:0 0 5px 0;}
+#feed-container li a.toc-title {font-weight: bold;text-align: left;padding: 0.3em 0.2em 0 0.3em;width: 97%;margin: 0 auto;font-size: 16px; line-height: 110%;}
+#feed-container li .news-text {display:none}
+#feed-container li img {
+	min-width: 220px;
+    min-height: 100%;
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+    max-width: 200%;
+    opacity: 1;
+    transition: all 0.4s ease 0s;}
+#feed-container li img:hover {opacity: 0.5;-webkit-transition: all 0.4s ease 0s;-moz-transition: all 0.4s ease 0s;transition: all 0.4s ease 0s;}
+#result-desc {position: relative;padding: 0;border: 2px solid #222;display: block;width: 98%;margin: 0 auto;z-index:0;}
+#result-desc span,#result-desc div {display:block;margin:0;padding:5px 10px 7px;color:#D64D52;}
+#result-desc div {color:inherit;}
+#feed-nav {margin: 10px 0 20px 0;text-align: center;font-weight: bold;text-transform: uppercase;}
+#feed-nav a,#feed-nav span {background-color:#9ECDEC;padding:0;color:#000;text-decoration:none;display:block;height:30px;line-height:32px;}
+#feed-nav a:hover,#feed-nav a:active {background-color:#0737a1;color:#fff;}
+#feed-nav span {cursor:wait;}
+@media only screen and (max-width: 991px)
+{
+#feed-container li {height:270px;}
+#feed-container li a.gambarsite {height:185px;}
+#feed-container li img {min-width:190px;}
+#instafeed li {
+    width: 23%;}
+}
+@media only screen and (max-width: 767px) {
+#feed-container li {width: 48%;height:270px;}
+#feed-container li a.gambarsite {height:180px;}
+#feed-container li img {min-width:190px;}
+#instafeed li {
+    width: 30%;}
+}
+@media only screen and (max-width: 575px) {
+#feed-container li a.gambarsite {height:240px;}
+#feed-container li {width: 240px;margin:10px auto;display:block;float:none;height:330px;}
+#feed-container li img {min-width:240px;}
+#instafeed li {
+    width: 45%;}
+}
+</style>
+</b:if>
+<div id="z">
+<div id="kotakku">
+<div id="table-outer">
+<table border="0">
+        <tbody>
+<tr>
+                <td><label for="feed-order">Posts sort by:</label>
+                </td>
+                <td><select id="feed-order">
+                        <option selected="" value="published">NEW POST</option>
+                        <option value="updated">UPDATE POST</option>
+                    </select>
+                </td>
+            </tr>
+<tr>
+                <td><label for="label-sorter">Posts sort by category:</label>
+                </td>
+                <td><select disabled="" id="label-sorter">
+                        <option selected="">LOADING..</option>
+                    </select>
+                </td>
+            </tr>
+<tr>
+                <td><label for="feed-q">Search by keyword:</label>
+                </td>
+                <td><form id="post-searcher">
+<input id="feed-q" type="text" />
+                    </form>
+</td>
+            </tr>
+</tbody>
+    </table>
+</div>
+<header id="result-desc"></header>
+<br/>
+<ul id="feed-container"></ul>
+<div id="feed-nav">
+</div>
+<div class="clear">
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+//<![CDATA[
+
+document.write('<div id="itempager" style="position:relative;"></div>')
+;var loadToc,loadCategories,_toc={init:function(){var cfg={homePage:'https://'+ window.location.hostname,maxResults:12,numChars:270,thumbWidth:290,navText:"Next &#9660;",resetToc:"Back to Top &uArr;",noImage:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhulilFCqHTlhM-VnP-Wm4pPtRYy_usyYcj2ELv5ctr9B9Rg6kzyhjHf6fBF0emCq3jAS1z0mN_JOpYUVqzlHdCNgrYO1A5bXA59GDWbAWJtVAzFggI_x3qfmX1OYIqD4xr_fIXHIy8Qw/s1600/no-pict.jpg",loading:"<span>Loading...</span>",counting:"<div>Counting...</div>",searching:"<span>Searching..</span>"},w=window,d=document,el=function(id){return d.getElementById(id);},o={a:el('feed-order'),b:el('label-sorter').parentNode,c:el('post-searcher'),d:el('feed-q'),e:el('result-desc'),f:el('feed-container'),g:el('feed-nav'),h:d.getElementsByTagName('head')[0],i:0,j:null,k:'published',l:0,m:""},fn={a:function(){old=el('temporer-script');old.parentNode.removeChild(old);},b:function(param){var script=d.createElement('script');script.type="text/javascript";script.id="temporer-script";script.src=param;if(el('temporer-script'))fn.a();o.h.appendChild(script);},c:function(mode,tag,order){o.i++;o.e.innerHTML=cfg.counting;o.g.innerHTML=cfg[mode==1?"searching":"loading"];if(mode===0){fn.b(tag!==null?cfg.homePage+'/feeds/posts/summary/-/'+ tag+'?alt=json-in-script&start-index='+((o.i*cfg.maxResults)+ 1)+'&max-results='+ cfg.maxResults+'&orderby='+ order+'&callback=loadToc':cfg.homePage+'/feeds/posts/summary?alt=json-in-script&start-index='+((o.i*cfg.maxResults)+ 1)+'&max-results='+ cfg.maxResults+'&orderby='+ order+'&callback=loadToc');}else if(mode==1){fn.b(cfg.homePage+'/feeds/posts/summary?alt=json-in-script&start-index='+((o.i*cfg.maxResults)+ 1)+'&max-results='+ cfg.maxResults+'&q='+ tag+'&orderby='+ order+'&callback=loadToc');}
+
+o.j=(tag!==null)?tag:null;o.l=mode;o.a.disabled=true;o.b.children[0].disabled=true;},d:function(json){var _h;o.g.innerHTML="";o.e.innerHTML=o.l==1?'<span>Showing results for name: <strong>&#8220;'+ o.m+'&#8221;</strong>('+json.feed.openSearch$totalResults.$t+' post)</span>':'<div> Total: '+ json.feed.openSearch$totalResults.$t+' Post</div>';if("entry"in json.feed){var a=json.feed.entry,b,c,_d,e="0 Komentar",f="",g;for(var i=0;i<cfg.maxResults;i++){if(i==a.length)break;b=a[i].title.$t;_d=("summary"in a[i])?a[i].summary.$t.replace(/<br ?\/?>/ig," ").replace(/<(.*?)>/g,"").replace(/<iframe/ig,"").substring(0,cfg.numChars):"";g=("media$thumbnail"in a[i])?a[i].media$thumbnail.url.replace(/\/s[0-9]+\-c/,"\/s"+ cfg.thumbWidth+"-c"):cfg.noImage.replace(/\/s[0-9]+\-c/,"\/s"+ cfg.thumbWidth+"-c");for(var j=0,jen=a[i].link.length;j<jen;j++){c=(a[i].link[j].rel=="alternate")?a[i].link[j].href:"#";}
+
+for(var k=0,ken=a[i].link.length;k<ken;k++){if(a[i].link[k].rel=="replies"&&a[i].link[k].type=="text/html"){e=a[i].link[k].title;break;}}
+
+_h=d.createElement('li');_h.innerHTML='<div class="inner"><a class="gambarsite" href="'+ c+'" ><img src="'+ g+'" alt="'+ b+'"></a><a class="toc-title" href="'+ c+'" >'+ b+'</a><strong>-'+ e+'</strong><br>'+'<div class="news-text">'+ _d+'&hellip;<br style="clear:both;"></div></div>';o.f.appendChild(_h);}
+
+_h=d.createElement('a');_h.href='#load-more';_h.innerHTML=cfg.navText;_h.onclick=function(){fn.c(o.l,o.j,o.k);return false;};}else{_h=d.createElement('a');_h.href='#reset-content';_h.innerHTML=cfg.resetToc;_h.onclick=function(){o.i=-1;o.e.innerHTML=cfg.counting;o.f.innerHTML="";fn.c(0,null,'published');o.a.innerHTML=o.a.innerHTML;o.b.children[0].innerHTML=o.b.children[0].innerHTML;return false;};}
+
+o.g.appendChild(_h);o.a.disabled=false;o.b.children[0].disabled=false;},e:function(json){var a=json.feed.category,b='<select id="label-sorter"><option value="" selected disabled>CATEGORY...</option>';for(var i=0,len=a.length;i<len;i++){b+='<option value="'+ encodeURIComponent(a[i].term)+'">'+ a[i].term.toUpperCase()+'</option>';}
+
+b+='</select>';o.b.innerHTML=b;o.b.children[0].onchange=function(){o.i=-1;o.f.innerHTML="";o.g.innerHTML=cfg.loading;fn.c(0,this.value,o.k);};}};loadToc=fn.d;loadCategories=fn.e;fn.b(cfg.homePage+'/feeds/posts/summary?alt=json-in-script&start-index='+(o.i+ 1)+'&max-results='+ cfg.maxResults+'&orderby=published&callback=loadToc');fn.b(cfg.homePage+'/feeds/posts/summary?alt=json-in-script&max-results=0&orderby=published&callback=loadCategories');o.a.onchange=function(){o.i=-1;o.f.innerHTML="";o.g.innerHTML=cfg.counting;o.b.children[0].innerHTML=o.b.children[0].innerHTML;fn.c(0,null,this.value);o.k=this.value;};o.c.onsubmit=function(){o.i=-1;o.f.innerHTML="";o.m=o.d.value;fn.c(1,o.d.value,o.k);return false;};}};_toc.init();
+
+//]]></script>

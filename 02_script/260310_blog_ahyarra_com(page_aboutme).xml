@@ -112,7 +112,7 @@ margin: 20px auto;
     position: absolute;
     content: '';
     right: 0;
-    top: 50%;
+    top: 65%;
     transform: translate(0, -50%);
     width: 6.3rem;
     height: 2px;
@@ -587,13 +587,13 @@ padding: 0 20px;}
 								<div class='typed-strings'>
     <p>Content Strategist</p>
   <p><em>Creative</em> Designer</p>
-  	<p>Content Creator</p>
-  <p><em>Creative</em> Director</p>
+  	<p>Social Media Specialist</p>
+  <p><em>Art</em> Director</p>
 </div>
 <h1>
 I'm <span class='typed'></span>
 </h1>
-								<p class="header-intro-text" style="visibility: visible;" uk-scrollspy="cls: uk-animation-slide-bottom; delay: 100"><strong>Panggil saya Bang Ahyar! </strong>😁, pernah lama jadi Creative Designer, sekarang jadi Content Strategist. Jadi kalau ada konten yang keren tapi nggak efektif, atau strategi yang rapi tapi nggak seru? Nah, di situlah saya masuk buat nyetir, biar dua-duanya jalan bareng. 🚀</p>
+								<p class="header-intro-text" style="visibility: visible;" uk-scrollspy="cls: uk-animation-slide-bottom; delay: 100"><strong>Panggil saya Ahyar! </strong>😁, pernah lama jadi Creative Designer, sekarang jadi Content Strategist. Jadi kalau ada konten yang keren tapi nggak efektif, atau strategi yang rapi tapi nggak seru? Nah, di situlah saya masuk buat nyetir, biar dua-duanya jalan bareng.</p>
 							</div>
 			</div>
 		</div>
@@ -772,7 +772,7 @@ P: 0851 5511 9809 (Ahyar)
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
           progressContainer.style.display = 'none'; // Sembunyikan Loading Bar
-          msg.innerHTML = '<span style="color: #fff;">Message sent successfully! Thank you.</span>';
+          msg.innerHTML = '<span style="color: #000;">Message sent successfully! Thank you.</span>';
           form.reset();
           btn.disabled = false;
           btn.innerHTML = originalBtnHTML;

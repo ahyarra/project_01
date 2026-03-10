@@ -666,11 +666,12 @@ color:#0943bb;
 .post_share {
 width: 100%;
 margin: 5px auto;
-max-width: 300px;
+max-width: 250px;
 display: inline-flex;
 flex-direction: row;
 flex-wrap: nowrap;
 justify-content: space-around;
+align-items: center;
 }
 .uk-close {
     color: #0943bb;
@@ -992,7 +993,7 @@ header>div,:not(blockquote)>footer>div{position:relative;z-index:2}
 /* main
 ------------------------------- */
 main{position:relative;z-index:3}
-main .main_content{ padding-top:20px;margin-top:100px;margin-bottom:70px}
+main .main_content{ padding-top:20px;margin-top:50px;margin-bottom:70px}
 .error_view{background:#f2f2f2;}
 
 /* .top_bg + .bottom_bg */
@@ -1009,6 +1010,7 @@ main .main_content{ padding-top:20px;margin-top:100px;margin-bottom:70px}
     pointer-events: none;
     box-shadow: none;
 }
+.filtering_labels {padding:20px 0}
 .filtering_labels .select_label a{padding:0 10px}
 .filtering_labels .select_label a:not(.uk-active):not(:hover):not(:active):not(:focus){border-color:#fff}
 .filtering_labels .select_view a{height:40px;width:40px}
@@ -1048,7 +1050,7 @@ main .main_content{ padding-top:20px;margin-top:100px;margin-bottom:70px}
 .single_post .post_header a:hover,.single_post .post_footer a:hover,.full_header .post_header a:hover,.full_header .post_footer a:hover{color:#333}
 .single_post .post_header .post_header_line > span,.single_post .post_footer .post_footer_line > span,.full_header .post_header .post_header_line > span,.full_header .post_footer .post_footer_line > span{display:inline-block}
 .single_post .post_header .post_header_line .post_reactions iframe,.single_post .post_footer .post_footer_line .post_reactions iframe,.full_header .post_header .post_header_line .post_reactions iframe,.full_header .post_footer .post_footer_line .post_reactions iframe{height:26px}
-.single_post .post_share_label,.full_header .post_share_label{float:left;height:36px;line-height:36px}
+.single_post .post_share_label,.full_header .post_share_label{float:left;height:30px;line-height:30px}
 .single_post .post_footer{font-size:14px}
 .single_post .post_author_profile{background:#f9f9f9;border:1px solid #f1f1f1;padding:20px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.05);box-shadow:0 5px 10px rgba(0,0,0,0.05);border-radius: 30px;}
 .single_post .post_author_profile .post_author_profile_photo img,.single_post .post_author_profile .post_author_profile_name img{border-radius:500px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.15);box-shadow:0 5px 10px rgba(0,0,0,0.15)}
@@ -1070,7 +1072,12 @@ main .main_content{ padding-top:20px;margin-top:100px;margin-bottom:70px}
 .single_post .post_body a.uk-accordion-title,.single_post .post_body .uk-tab > * > a,.single_post .post_body a.uk-accordion-title:hover,.single_post .post_body .uk-tab > * > a:hover{text-decoration:none}
 
 /* .post_related */
-.post_related{margin:0 -15px 15px;padding:0 15px 25px;overflow:hidden;position:relative}
+.post_related {
+    margin: 15px 0 0px;
+    padding: 25px 0 0;
+    overflow: hidden;
+    position: relative;
+}
 .post_related .uk-slider{overflow:visible}
 .post_related .post_related_title{background:#f9f9f9;font-size:14px;font-weight:700;line-height:30px;letter-spacing:1px;margin:0 0 25px;padding:8px 20px;text-transform:uppercase;border:1px solid #f1f1f1;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.05);box-shadow:0 5px 10px rgba(0,0,0,0.05)}
 .post_related .blog_posts{margin-bottom:20px}
@@ -3846,8 +3853,8 @@ color:#0943bb;
               <b:include data='post' name='postAlignment'/>
               <b:include data='post' name='postBody'/>
               <b:include data='post' name='inlineAdPost'/>
-              <b:include data='post' name='postRelated'/>
               <b:include data='post' name='postFooter'/>
+			  <b:include data='post' name='postRelated'/>
             </div>
             <b:include data='post' name='commentPicker'/>
           </article>
@@ -4271,49 +4278,7 @@ color:#0943bb;
 		<!-- .topgrid -->
             <div class='topgrid'>
               <b:section class='topgrid_section uk-width-1-1@m' id='footer_section_1'>
-				<b:widget id='ContactForm1' locked='false' title='Contact Form' type='ContactForm' visible='true'>
-                  <b:includable id='main'>
-  <b:include name='widget-title'/>
-  <b:include name='content'/>
-</b:includable>
-                  <b:includable id='content'>
-                    <style type='text/css'>
-                    #footer_section_1 #ContactForm1{display:none;}
-                    </style>
-          <div class='contact-form-widget'>
-            <div class='form'>
-              <form name='contact-form'>
-                <div class='uk-margin'>
-                  <div class='uk-inline'>
-                    <span class='uk-form-icon uk-form-icon-flip' data-uk-icon='user'/>
-                    <input class='contact-form-name uk-input' expr:id='data:widget.instanceId + &quot;_contact-form-name&quot;' expr:placeholder='data:contactFormNameMsg' name='name' type='text' value=''/>
-                  </div>
-                </div>
-                <div class='uk-margin'>
-                  <div class='uk-inline'>
-                    <span class='uk-form-icon uk-form-icon-flip' data-uk-icon='mail'/>
-                    <input class='contact-form-email uk-input' expr:id='data:widget.instanceId + &quot;_contact-form-email&quot;' expr:placeholder='data:contactFormEmailMsg + &quot; *&quot;' name='email' type='text' value=''/>
-                  </div>
-                </div>
-
-                <div class='uk-margin'>
-                  <div class='uk-inline'>
-                    <textarea class='contact-form-email-message uk-textarea' expr:id='data:widget.instanceId + &quot;_contact-form-email-message&quot;' expr:placeholder='data:contactFormMessageMsg + &quot; *&quot;' name='email-message' rows='5'/>
-                  </div>
-                </div>
-                <div class='uk-button uk-button-danger uk-width-1-1'>
-                  <span><data:contactFormSendMsg/></span><span class='uk-margin-small-left uk-icon' data-uk-icon='forward'/><input class='class=&quot;contact-form-button contact-form-button-submit' expr:id='data:widget.instanceId + &quot;_contact-form-submit&quot;' value=''/>
-                </div>
-                <div class='contact-form-message-box'>
-                  <p class='contact-form-error-message' expr:id='data:widget.instanceId + &quot;_contact-form-error-message&quot;'/>
-                  <p class='contact-form-success-message' expr:id='data:widget.instanceId + &quot;_contact-form-success-message&quot;'/>
-                </div>
-              </form>
-            </div>
-          </div>
-        </b:includable>
-                </b:widget>
-                <b:widget id='HTML1' locked='false' title='' type='HTML' visible='true'>
+			  <b:widget id='HTML1' locked='false' title='' type='HTML' visible='true'>
                   <b:widget-settings>
                     <b:widget-setting name='content'>&lt;div class=&#39;linkfootku&#39;&gt;
 &lt;ul&gt;
@@ -4579,7 +4544,7 @@ color:#0943bb;
 <!-- script -->
 <script src='//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
-<script src='//rawcdn.githack.com/ahyarramadhan/ahyar-script/4503396d5b9c3929dc70e5363c4200c5debaa279/ahyarra-site.js'/>
+<script src='https://raw.githack.com/ahyarramadhan/ahyar-script/master/ahyarra-site.js'/>
 
 <script type='text/javascript'>
 //<![CDATA[
