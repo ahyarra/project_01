@@ -305,162 +305,182 @@
 
     <script>
     //<![CDATA[
-        // 1. URL Cleaning
-        var uri = window.location.toString();
-        if (uri.indexOf("?m=1") > 0) {
-            var clean_uri = uri.substring(0, uri.indexOf("?m=1"));
-            window.history.replaceState({}, document.title, clean_uri);
-        }
+        // 2. LOGIKA 3D LOADER & ANIMASI (OPTIMIZED FOR iOS)
+var triggerFinishAnimation;
+var animationFrameId;
+var loaderRenderer;
 
-// 2. LOGIKA 3D LOADER & ANIMASI
-    var triggerFinishAnimation; 
+(function() {
+    var $container = document.getElementById('cssload');
+    if (!$container) return; 
+
+    // 1. Ambil ukuran layar awal
+    var width = $container.clientWidth || window.innerWidth;
+    var height = $container.clientHeight || window.innerHeight;
+    if (height === 0) height = window.innerHeight;
+
+    var length = 30,
+        radius = 5.6,
+        rotatevalue = 0.035,
+        acceleration = 0,
+        animatestep = 0,
+        toend = false,
+        pi2 = Math.PI * 2,
+        group = new THREE.Group(),
+        mesh, ringcover, ring,
+        camera, scene, renderer;
+
+    // 2. Setup Kamera
+    camera = new THREE.PerspectiveCamera(65, width / height, 1, 10000);
+    
+    if (width < height) {
+        camera.position.z = 250;
+    } else {
+        camera.position.z = 150;
+    }
+
+    scene = new THREE.Scene();
+    scene.add(group);
+
+    mesh = new THREE.Mesh(
+        new THREE.TubeGeometry(new(THREE.Curve.create(function() {},
+            function(percent) {
+                var x = length * Math.sin(pi2 * percent),
+                    y = radius * Math.cos(pi2 * 3 * percent),
+                    z, t;
+                t = percent % 0.25 / 0.25;
+                t = percent % 0.25 - (2 * (1 - t) * t * -0.0185 + t * t * 0.25);
+                if (Math.floor(percent / 0.25) == 0 || Math.floor(percent / 0.25) == 2) {
+                    t *= -1;
+                }
+                z = radius * Math.sin(pi2 * 2 * (percent - t));
+                return new THREE.Vector3(x, y, z);
+            }
+        ))(), 200, 1.1, 2, true),
+        new THREE.MeshBasicMaterial({ color: 0xffffff })
+    );
+    group.add(mesh);
+
+    ringcover = new THREE.Mesh(new THREE.PlaneGeometry(50, 15, 1), new THREE.MeshBasicMaterial({ color: 0x0943bb, opacity: 0, transparent: true }));
+    ringcover.position.x = length + 1;
+    ringcover.rotation.y = Math.PI / 2;
+    group.add(ringcover);
+
+    ring = new THREE.Mesh(new THREE.RingGeometry(4.3, 5.55, 32), new THREE.MeshBasicMaterial({ color: 0xffffff, opacity: 0, transparent: true }));
+    ring.position.x = length + 1.1;
+    ring.rotation.y = Math.PI / 2;
+    group.add(ring);
 
     (function() {
-        var $container = document.getElementById('cssload');
-        if (!$container) return; 
-
-        // 1. Ambil ukuran layar
-        var width = $container.clientWidth || window.innerWidth;
-        var height = $container.clientHeight || window.innerHeight;
-        if (height === 0) height = window.innerHeight;
-
-        var length = 30,
-            radius = 5.6,
-            rotatevalue = 0.035,
-            acceleration = 0,
-            animatestep = 0,
-            toend = false,
-            pi2 = Math.PI * 2,
-            group = new THREE.Group(),
-            mesh, ringcover, ring,
-            camera, scene, renderer;
-
-        // 2. Setup Kamera
-        camera = new THREE.PerspectiveCamera(65, width / height, 1, 10000);
-        
-        // --- PERBAIKAN ZOOM (Disini kuncinya) ---
-        // Jika layar HP (lebar < tinggi), kamera mundur ke 250.
-        // Jika Desktop, tetap di 150 seperti aslinya.
-        if (width < height) {
-            camera.position.z = 250; // Mundur untuk HP (atur angka ini jika kurang pas)
-        } else {
-            camera.position.z = 150; // Posisi asli untuk Desktop
+        var plain, i;
+        for (i = 0; i < 10; i++) {
+            plain = new THREE.Mesh(new THREE.PlaneGeometry(length * 2 + 1, radius * 3, 1), new THREE.MeshBasicMaterial({ color: 0x0943bb, transparent: true, opacity: 0.13 }));
+            plain.position.z = -2.5 + i * 0.5;
+            group.add(plain);
         }
-
-        scene = new THREE.Scene();
-        scene.add(group);
-
-        mesh = new THREE.Mesh(
-            new THREE.TubeGeometry(new(THREE.Curve.create(function() {},
-                function(percent) {
-                    var x = length * Math.sin(pi2 * percent),
-                        y = radius * Math.cos(pi2 * 3 * percent),
-                        z, t;
-                    t = percent % 0.25 / 0.25;
-                    t = percent % 0.25 - (2 * (1 - t) * t * -0.0185 + t * t * 0.25);
-                    if (Math.floor(percent / 0.25) == 0 || Math.floor(percent / 0.25) == 2) {
-                        t *= -1;
-                    }
-                    z = radius * Math.sin(pi2 * 2 * (percent - t));
-                    return new THREE.Vector3(x, y, z);
-                }
-            ))(), 200, 1.1, 2, true),
-            new THREE.MeshBasicMaterial({ color: 0xffffff })
-        );
-        group.add(mesh);
-
-        ringcover = new THREE.Mesh(new THREE.PlaneGeometry(50, 15, 1), new THREE.MeshBasicMaterial({ color: 0x0943bb, opacity: 0, transparent: true }));
-        ringcover.position.x = length + 1;
-        ringcover.rotation.y = Math.PI / 2;
-        group.add(ringcover);
-
-        ring = new THREE.Mesh(new THREE.RingGeometry(4.3, 5.55, 32), new THREE.MeshBasicMaterial({ color: 0xffffff, opacity: 0, transparent: true }));
-        ring.position.x = length + 1.1;
-        ring.rotation.y = Math.PI / 2;
-        group.add(ring);
-
-        (function() {
-            var plain, i;
-            for (i = 0; i < 10; i++) {
-                plain = new THREE.Mesh(new THREE.PlaneGeometry(length * 2 + 1, radius * 3, 1), new THREE.MeshBasicMaterial({ color: 0x0943bb, transparent: true, opacity: 0.13 }));
-                plain.position.z = -2.5 + i * 0.5;
-                group.add(plain);
-            }
-        })();
-
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(width, height); 
-        renderer.setClearColor('#0943bb');
-
-        $container.appendChild(renderer.domElement);
-
-        // Auto-resize handler
-        window.addEventListener('resize', function() {
-            var newWidth = $container.clientWidth || window.innerWidth;
-            var newHeight = $container.clientHeight || window.innerHeight;
-            
-            camera.aspect = newWidth / newHeight;
-            camera.updateProjectionMatrix();
-            
-            // Update posisi kamera juga saat resize (opsional)
-            if (newWidth < newHeight) {
-                camera.position.z = 250; 
-            } else {
-                camera.position.z = 150;
-            }
-
-            renderer.setSize(newWidth, newHeight);
-        });
-
-        function easing(t, b, c, d) {
-            if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-            return c / 2 * ((t -= 2) * t * t + 2) + b;
-        }
-
-        function render() {
-            var progress;
-            animatestep = Math.max(0, Math.min(240, toend ? animatestep + 1 : animatestep - 4));
-            acceleration = easing(animatestep, 0, 1, 240);
-
-            if (acceleration > 0.35) {
-                progress = (acceleration - 0.35) / 0.65;
-                group.rotation.y = -Math.PI / 2 * progress;
-                group.position.z = 50 * progress;
-                progress = Math.max(0, (acceleration - 0.97) / 0.03);
-                mesh.material.opacity = 1 - progress;
-                ringcover.material.opacity = ring.material.opacity = progress;
-                ring.scale.x = ring.scale.y = 0.9 + 0.1 * progress;
-            }
-            renderer.render(scene, camera);
-        }
-
-        function animate() {
-            mesh.rotation.x += rotatevalue + acceleration;
-            render();
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-        triggerFinishAnimation = function() { toend = true; };
     })();
 
-    // 3. TRIGGER LOAD & TRANSITION
-    $(window).on("load", function() {
-        if (typeof triggerFinishAnimation === "function") {
-            triggerFinishAnimation(); 
-        }
+    // OPTIMIZATION: Reduce antialias & pixel ratio untuk iOS
+    renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, precision: 'lowp' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Max 1.5x
+    renderer.setSize(width, height); 
+    renderer.setClearColor('#0943bb');
 
+    loaderRenderer = renderer;
+    $container.appendChild(renderer.domElement);
+
+    var resizeHandler = function() {
+        width = $container.clientWidth || window.innerWidth;
+        height = $container.clientHeight || window.innerHeight;
+        if (height === 0) height = window.innerHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+
+        if (width < height) {
+            camera.position.z = 250;
+        } else {
+            camera.position.z = 150;
+        }
+    };
+
+    window.addEventListener('resize', resizeHandler);
+
+    function easing(t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+        return c / 2 * ((t -= 2) * t * t + 2) + b;
+    }
+
+    function render() {
+        var progress;
+        animatestep = Math.max(0, Math.min(240, toend ? animatestep + 1 : animatestep - 4));
+        acceleration = easing(animatestep, 0, 1, 240);
+
+        if (acceleration > 0.35) {
+            progress = (acceleration - 0.35) / 0.65;
+            group.rotation.y = -Math.PI / 2 * progress;
+            group.position.z = 50 * progress;
+            progress = Math.max(0, (acceleration - 0.97) / 0.03);
+            mesh.material.opacity = 1 - progress;
+            ringcover.material.opacity = ring.material.opacity = progress;
+            ring.scale.x = ring.scale.y = 0.9 + 0.1 * progress;
+        }
+        renderer.render(scene, camera);
+    }
+
+    var isAnimating = true;
+    function animate() {
+        if (!isAnimating) return;
+        
+        mesh.rotation.x += rotatevalue + acceleration;
+        render();
+        animationFrameId = requestAnimationFrame(animate);
+    }
+
+    animate();
+    
+    triggerFinishAnimation = function() { 
+        toend = true;
+        // Stop animasi setelah 5 detik untuk free memory
         setTimeout(function() {
-            $("#cssload").fadeOut(1000, function() {
-                if (typeof WOW === 'function') { 
-                    new WOW().init(); 
-                } else if (window.WOW) {
-                    new WOW().init();
-                }
-            });
-        }, 4000); 
-    });
+            isAnimating = false;
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }, 5000);
+    };
+
+    // CLEANUP function untuk iOS
+    window._cleanupLoader = function() {
+        isAnimating = false;
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+        window.removeEventListener('resize', resizeHandler);
+        if (renderer && renderer.dispose) {
+            renderer.dispose();
+        }
+    };
+})();
+
+// 3. TRIGGER LOAD & TRANSITION
+$(window).on("load", function() {
+    if (typeof triggerFinishAnimation === "function") {
+        triggerFinishAnimation(); 
+    }
+
+    setTimeout(function() {
+        $("#cssload").fadeOut(800, function() {
+            $("#cssload").remove();
+            if (typeof window._cleanupLoader === 'function') {
+                window._cleanupLoader();
+            }
+        });
+    }, 4000); 
+});
     //]]>
     </script>
 

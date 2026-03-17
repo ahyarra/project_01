@@ -21,10 +21,38 @@
 })();
 //]]>
 </script>
-<meta content='#39f' name='theme-color'/>
-<meta content='#39f' name='msapplication-navbutton-color'/>
-<meta content='yes' name='apple-mobile-web-app-capable'/>
-<meta content='#39f' name='apple-mobile-web-app-status-bar-style'/>
+<script type='text/javascript'>
+//<![CDATA[
+// iOS SCROLL OPTIMIZATION
+(function() {
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (!isIOS) return;
+    
+    var scrollTimer;
+    var isScrolling = false;
+    
+    // Throttle scroll events untuk iOS
+    window.addEventListener('scroll', function() {
+        if (scrollTimer) clearTimeout(scrollTimer);
+        
+        if (!isScrolling) {
+            isScrolling = true;
+            document.body.style.pointerEvents = 'none';
+        }
+        
+        scrollTimer = setTimeout(function() {
+            isScrolling = false;
+            document.body.style.pointerEvents = 'auto';
+        }, 150);
+    }, { passive: true });
+    
+    // Prevent memory leak dari scroll position restoration
+    window.addEventListener('beforeunload', function() {
+        if (scrollTimer) clearTimeout(scrollTimer);
+    });
+})();
+//]]>
+</script>
 <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-OKxA4CKqMnDh1WWb_oXmh799YBpgDlrVTBVIpuMMQNgD47hFsEWiXGzeRumeJVQC9pz8SGjnmJB822_C30utKIJ7w6zGlAAxDDAC7RXzVVDBg6m2tPBZ5bVpCt1eZubH2JB0_PuBKwTU29DkFq98iz2QNCF313m2i3-QIrodQNL4lc4/s1600/favicon_2.png' rel='apple-touch-icon' sizes='57x57'/>
 <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-OKxA4CKqMnDh1WWb_oXmh799YBpgDlrVTBVIpuMMQNgD47hFsEWiXGzeRumeJVQC9pz8SGjnmJB822_C30utKIJ7w6zGlAAxDDAC7RXzVVDBg6m2tPBZ5bVpCt1eZubH2JB0_PuBKwTU29DkFq98iz2QNCF313m2i3-QIrodQNL4lc4/s1600/favicon_2.png' rel='apple-touch-icon' sizes='60x60'/>
 <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-OKxA4CKqMnDh1WWb_oXmh799YBpgDlrVTBVIpuMMQNgD47hFsEWiXGzeRumeJVQC9pz8SGjnmJB822_C30utKIJ7w6zGlAAxDDAC7RXzVVDBg6m2tPBZ5bVpCt1eZubH2JB0_PuBKwTU29DkFq98iz2QNCF313m2i3-QIrodQNL4lc4/s1600/favicon_2.png' rel='apple-touch-icon' sizes='72x72'/>
@@ -102,9 +130,24 @@ Author: Elyza - ar-themes
 
 /* Ubah
 ------------------------------- */
-/* MODAL FADE ONLY & CEPAT */
-.uk-modal, .uk-modal-dialog { transition-duration: 0.15s !important; }
-.uk-modal-dialog { transform: translateY(0) !important; }
+/* MODAL FADE ONLY & CEPAT - OPTIMIZED FOR iOS */
+.uk-modal, .uk-modal-dialog { transition-duration: 0.15s !important; will-change: auto; }
+.uk-modal-dialog { transform: translateY(0) !important; transform: translate3d(0, 0, 0); }
+
+/* Add GPU acceleration untuk scroll performance */
+.uk-scroll-container, [data-uk-scrollspy], .blog-item { 
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+/* Debounce scroll events di iOS */
+@media (max-width: 768px) {
+    body { -webkit-user-select: none; -webkit-touch-callout: none; }
+    * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+    
+    /* Reduce paint areas on scroll */
+    .blog-post, .post-item { contain: layout style paint; }
+}
 	
 .widget_title {display:none!important;}
 .uk-input, .uk-select, .uk-textarea {
@@ -586,7 +629,7 @@ color:#0943bb;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     z-index: 9999;
     /* Sesuaikan warna ini dengan warna background animasi Anda */
     background: #3399FF; 
@@ -800,7 +843,7 @@ margin: 0 auto;
 #blog_posts {margin-top: 10px;}
 /* Global
 ------------------------------- */
-body{background:$(body.background);color:$(body.text.color);font:$(body.text.font);line-height:1.42857143;margin:0;min-height:100vh}
+body{background:$(body.background);color:$(body.text.color);font:$(body.text.font);line-height:1.42857143;margin:0;min-height:100dvh}
 body.single_view:not(.light){background-color:#f2f2f2}
 a,a:hover,a:focus{text-decoration:none;outline:none}
 a,button,input,textarea,.btn,.contact-note p,.post_snippet_text,.post_share_buttons{-webkit-transition:all 0.3s ease 0s;-o-transition:all 0.3s ease 0s;transition:all 0.3s ease 0s}
@@ -1474,7 +1517,7 @@ header{height:40px;}
         text-align: center;
         background-color: #fdfefd;
         color: white;
-		height:100vh;
+		height:100dvh;
         transition: 0.15s ease-in-out;
 		display: flex;
         justify-content: center;
@@ -2770,7 +2813,7 @@ body, html	{margin:0; padding:0;width:100%;height:100%!important; overflow-x: hi
 }
 #background-video {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   object-fit: cover;
   position: fixed;
   left: 0;
@@ -4560,8 +4603,10 @@ const nav = document.querySelector(".nav");
 hamburgerMenu.addEventListener("click", () => {
     nav.classList.toggle("active")
 });
-// 2. LOGIKA 3D LOADER & ANIMASI
-var triggerFinishAnimation; 
+// 2. LOGIKA 3D LOADER & ANIMASI (OPTIMIZED FOR iOS)
+var triggerFinishAnimation;
+var animationFrameId;
+var loaderRenderer;
 
 (function() {
     var $container = document.getElementById('cssload');
@@ -4586,11 +4631,10 @@ var triggerFinishAnimation;
     // 2. Setup Kamera
     camera = new THREE.PerspectiveCamera(65, width / height, 1, 10000);
     
-    // --- PERBAIKAN ZOOM AWAL ---
     if (width < height) {
-        camera.position.z = 250; // Mundur untuk HP
+        camera.position.z = 250;
     } else {
-        camera.position.z = 150; // Desktop
+        camera.position.z = 150;
     }
 
     scene = new THREE.Scene();
@@ -4634,32 +4678,32 @@ var triggerFinishAnimation;
         }
     })();
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    // OPTIMIZATION: Reduce antialias & pixel ratio untuk iOS
+    renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, precision: 'lowp' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Max 1.5x
     renderer.setSize(width, height); 
     renderer.setClearColor('#3399FF');
 
+    loaderRenderer = renderer;
     $container.appendChild(renderer.domElement);
 
-    // --- PERBAIKAN: AUTO-RESIZE HANDLER ---
-    // Ini solusi agar canvas tidak gepeng saat layar berubah ukuran
-    window.addEventListener('resize', function() {
+    var resizeHandler = function() {
         width = $container.clientWidth || window.innerWidth;
         height = $container.clientHeight || window.innerHeight;
         if (height === 0) height = window.innerHeight;
 
-        // Update kamera dan ukuran renderer
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);
 
-        // Sesuaikan ulang zoom kamera kalau orientasi HP berubah
         if (width < height) {
             camera.position.z = 250;
         } else {
             camera.position.z = 150;
         }
-    });
+    };
+
+    window.addEventListener('resize', resizeHandler);
 
     function easing(t, b, c, d) {
         if ((t /= d / 2) < 1) return c / 2 * t * t + b;
@@ -4683,14 +4727,41 @@ var triggerFinishAnimation;
         renderer.render(scene, camera);
     }
 
+    var isAnimating = true;
     function animate() {
+        if (!isAnimating) return;
+        
         mesh.rotation.x += rotatevalue + acceleration;
         render();
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
     }
 
     animate();
-    triggerFinishAnimation = function() { toend = true; };
+    
+    triggerFinishAnimation = function() { 
+        toend = true;
+        // Stop animasi setelah 5 detik untuk free memory
+        setTimeout(function() {
+            isAnimating = false;
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }, 5000);
+    };
+
+    // CLEANUP function untuk iOS
+    window._cleanupLoader = function() {
+        isAnimating = false;
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+        window.removeEventListener('resize', resizeHandler);
+        if (renderer && renderer.dispose) {
+            renderer.dispose();
+        }
+    };
 })();
 
 // 3. TRIGGER LOAD & TRANSITION
@@ -4700,8 +4771,11 @@ $(window).on("load", function() {
     }
 
     setTimeout(function() {
-        $("#cssload").fadeOut(1000, function() {
-            // Animasi selesai, UIkit akan jalan otomatis
+        $("#cssload").fadeOut(800, function() {
+            $("#cssload").remove();
+            if (typeof window._cleanupLoader === 'function') {
+                window._cleanupLoader();
+            }
         });
     }, 4000); 
 });
